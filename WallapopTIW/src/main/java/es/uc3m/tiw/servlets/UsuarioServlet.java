@@ -1,4 +1,4 @@
-package es.uc3m.tiw.lab2.servlets;
+package es.uc3m.tiw.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -24,11 +24,10 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
-import es.uc3m.tiw.lab1.dominios.Usuario;
-import es.uc3m.tiw.lab2.Conector;
-import es.uc3m.tiw.lab2.daos.UsuarioDAO;
-import es.uc3m.tiw.lab2.daos.UsuarioDAOImpl;
-import es.uc3m.tiw.lab2.dominios.Direccion;
+import es.uc3m.tiw.dominios.Usuario;
+import es.uc3m.tiw.daos.UsuarioDAO;
+import es.uc3m.tiw.daos.UsuarioDAOImpl;
+import es.uc3m.tiw.dominios.Direccion;
 
 /**
  * Servlet implementation class UsuarioServlet

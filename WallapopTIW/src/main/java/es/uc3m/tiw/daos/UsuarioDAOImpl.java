@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.uc3m.tiw.lab2.daos;
+package es.uc3m.tiw.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
-import es.uc3m.tiw.lab1.dominios.Usuario;
+import es.uc3m.tiw.dominios.Usuario;
 
 /**
  * @author David Palomar

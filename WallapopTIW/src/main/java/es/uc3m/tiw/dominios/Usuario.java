@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.uc3m.tiw.lab1.dominios;
+package es.uc3m.tiw.dominios;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import es.uc3m.tiw.lab2.dominios.Direccion;
+import es.uc3m.tiw.dominios.Direccion;
 import static javax.persistence.CascadeType.ALL;
 
 /**
