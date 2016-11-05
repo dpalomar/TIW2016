@@ -39,7 +39,7 @@ public class UsuarioServlet extends HttpServlet {
 	private UsuarioDAO dao;
 	private Connection con;
 	private static final String ALTA="ALTA",EDITAR="EDITAR",BORRAR="BORRAR";
-    @PersistenceContext(unitName="laboratoriosPU")
+    @PersistenceContext(unitName="WallapopTIW")
     EntityManager em;
     @Resource
     UserTransaction ut;

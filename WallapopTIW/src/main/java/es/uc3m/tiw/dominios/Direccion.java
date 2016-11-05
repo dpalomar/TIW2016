@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.uc3m.tiw.lab2.dominios;
+package es.uc3m.tiw.dominios;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

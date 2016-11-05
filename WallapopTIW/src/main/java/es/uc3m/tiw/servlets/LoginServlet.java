@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 	//private Usuario usuario;
 	private List<Usuario> usuarios;
 	private UsuarioDAO dao;   
-	@PersistenceContext(unitName="laboratoriosPU")
+	@PersistenceContext(unitName="WallapopTIW")
 	private EntityManager em;
 	@Resource
 	UserTransaction ut;
