@@ -119,7 +119,7 @@ public class LoginServlet extends HttpServlet {
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			String user = request.getParameter("nombre");
+			String usuario = request.getParameter("email");
 			String password = request.getParameter("clave");
 			String mensaje ="";
 			String pagina = "";

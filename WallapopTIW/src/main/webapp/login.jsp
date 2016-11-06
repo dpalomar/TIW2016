@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -57,14 +55,14 @@
         <a class="navbar-brand" href="#">Wallapop TIW</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form action="login" method="post" class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right">
             <div class="form-group">
-              <input type="text" name="email" placeholder="Email" class="form-control">
+              <input type="text" placeholder="Email" class="form-control">
             </div>
             <div class="form-group">
-              <input type="password" name="clave" placeholder="Password" class="form-control">
+              <input type="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary" value="Enviar">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>

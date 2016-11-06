@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -75,67 +74,68 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron" style="padding: 15px">
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="container well well-lg" style="background-color: white">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="container well well-lg" style="background-color: white">
 
-            <form class="form-signin">
-              <h2 class="form-signin-heading text-center"><b>Regístrate</b></h2>
-              <h3 class="text-center">Es gratis y lo será siempre!</h3>
-              </br>
+        <form class="form-signin">
+          <h2 class="form-signin-heading text-center"><b>Regístrate</b></h2>
+          <h3 class="text-center">Es gratis y lo será siempre!</h3>
+          </br>
 
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="inputNombre" class="sr-only">Nombre</label>
-                    <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" required>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                 <label for="inputApellidos" class="sr-only">Apellidos</label>
-                 <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" required>
-                </div>
-              </div>
-
+          <div class="row">
+            <div class="col-md-6">
               <div class="form-group">
-              <label for="inputEmail" class="sr-only">Email</label>
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                <label for="inputNombre" class="sr-only">Nombre</label>
+                <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" required>
               </div>
+            </div>
+            <div class="col-md-6">
+             <label for="inputApellidos" class="sr-only">Apellidos</label>
+             <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" required>
+            </div>
+          </div>
 
-              <div class="form-group">
-              <label for="inputPassword" class="sr-only">Contraseña</label>
-              <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-              </div>
+          <div class="form-group">
+          <label for="inputEmail" class="sr-only">Email</label>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+          </div>
 
-              <div class="form-group">
-              <label for="inputPassword2" class="sr-only">Repetir Contraseña</label>
-              <input type="password" id="inputPassword2" class="form-control" placeholder="Repetir Contraseña" required>
-              </div>
+          <div class="form-group">
+          <label for="inputPassword" class="sr-only">Contraseña</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+          </div>
 
-              <div class="form-group">
-              <label for="inputCiudad" class="sr-only">Ciudad</label>
-              <input type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" required>
-              </div>
-              <div class="checkbox" style="text-align: auto !important">
-                <label>
-                    <input type="checkbox" value="condiciones"> Acepto las <a href="#">Condiciones</a> y la <a href="#">Política de datos</a>, incluido el <a href="#">uso de cookies</a>
-                </label>
-              </div>
-              <button class="btn btn-lg btn-success btn-block" type="submit">Registrarse</button>
-            
-            </form>
+          <div class="form-group">
+          <label for="inputPassword2" class="sr-only">Repetir Contraseña</label>
+          <input type="password" id="inputPassword2" class="form-control" placeholder="Repetir Contraseña" required>
+          </div>
 
-          </div> <!-- /container -->
-        
-        </div>
-        <div class="col-md-8">
-          <span><img class="img-responsive center-block"src="http://es.wallapop.com/images/banner.jpg" alt="Wallapop" ></span>
-        </div>
-      </div>
+          <div class="form-group">
+          <label for="inputCiudad" class="sr-only">Ciudad</label>
+          <input type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" required>
+          </div>
+          <div class="checkbox" style="text-align: auto !important">
+            <label>
+                <input type="checkbox" value="condiciones"> Acepto las <a href="#">Condiciones</a> y la <a href="#">Política de datos</a>, incluido el <a href="#">uso de cookies</a>
+            </label>
+          </div>
+          <button class="btn btn-lg btn-success btn-block" type="submit">Registrarse</button>
+
+        </form>
+
+      </div> <!-- /container -->
+
+    </div>
+    <div class="col-md-8">
+      <span><img class="img-responsive center-block"src="http://es.wallapop.com/images/banner.jpg" alt="Wallapop" ></span>
+    </div>
+  </div>
 
 
     </div>
-
+   
+</html>
       <!-- Three columns of text below the carousel -->
       <div class="row" style="padding: 40px;">
 
