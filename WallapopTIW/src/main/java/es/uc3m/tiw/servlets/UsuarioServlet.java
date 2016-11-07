@@ -27,10 +27,9 @@ import javax.transaction.UserTransaction;
 import es.uc3m.tiw.dominios.Usuario;
 import es.uc3m.tiw.daos.UsuarioDAO;
 import es.uc3m.tiw.daos.UsuarioDAOImpl;
-import es.uc3m.tiw.dominios.Direccion;
 
 /**
- * Servlet implementation class UsuarioServlet
+ * @author Grupo 3 - TIW 2016
  */
 @WebServlet("/usuario")
 public class UsuarioServlet extends HttpServlet {
@@ -60,7 +59,6 @@ public class UsuarioServlet extends HttpServlet {
 		dao = new UsuarioDAOImpl();
 		dao.setConexion(em);
 		dao.setTransaction(ut);
-
 	}
 
 	/**
@@ -79,54 +77,63 @@ public class UsuarioServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String accion = request.getParameter("accion");
-
-			String pagina = null;
+		/*Comprobar en todo momento que el ususario que accede tiene la sesion abierta*/
+		HttpSession sesion = request.getSession();
+    		if((sesion.getAttribute("autenticado").toString()).equalsIgnoreCase("false")){
+				
+				this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);	
+			}else{
 		
-			try {
-				try {
+				String accion = request.getParameter("accion");
+
+					String pagina = null;
+				
 					try {
-						if (accion.equalsIgnoreCase(ALTA)) {
-							pagina = "/altausuario.jsp";
-							
-						}else if (accion.equalsIgnoreCase(EDITAR)) {
-							Usuario usuario = recuperarDatosUsuario(request);
-							request.setAttribute("usuario", usuario);
-							pagina = "/editarusuario.jsp";
-							
-						}else if (accion.equalsIgnoreCase(BORRAR)) {
-							Usuario usuario = recuperarDatosUsuario(request);
-							pagina = "/login.jsp";
-							borrarUsuario(usuario);
+						try {
+							try {
+								if (accion.equalsIgnoreCase(ALTA)) {
+									pagina = "/altausuario.jsp";
+									
+								}else if (accion.equalsIgnoreCase(EDITAR)) {
+									Usuario usuario = recuperarDatosUsuario(request);
+									request.setAttribute("usuario", usuario);
+									pagina = "/editarusuario.jsp";
+									
+								}else if (accion.equalsIgnoreCase(BORRAR)) {
+									Usuario usuario = recuperarDatosUsuario(request);
+									pagina = "/login.jsp";
+									borrarUsuario(usuario);
+								}
+							} catch (SecurityException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IllegalStateException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (RollbackException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (HeuristicMixedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (HeuristicRollbackException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						} catch (NotSupportedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SystemException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
-					} catch (SecurityException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (RollbackException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (HeuristicMixedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (HeuristicRollbackException e) {
+					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				} catch (NotSupportedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SystemException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+					config.getServletContext().getRequestDispatcher(pagina).forward(request, response);
+			
 			}
-			config.getServletContext().getRequestDispatcher(pagina).forward(request, response);
 	}
 
 	/**
@@ -157,17 +164,21 @@ public class UsuarioServlet extends HttpServlet {
 		String accion = request.getParameter("accion");
 		HttpSession sesion = request.getSession();
 		String pagina = "/login.jsp";
-		if ((sesion.getAttribute("autenticado").toString()).equalsIgnoreCase("true")) {
-			Usuario usuarioAutenticado = (Usuario) sesion.getAttribute("usuario");
-			String nick = usuarioAutenticado.getUsuario();
-			String password = usuarioAutenticado.getPassword();
-			pagina = String.format("/login?nombre=%s&clave=%s",nick, password);
 		
 		if (accion.equalsIgnoreCase(ALTA)) {
 			Usuario usuario = new Usuario();
+			
+			usuario.setUsuario(request.getParameter("email"));
+			usuario.setPassword(request.getParameter("clave"));
 			usuario.setNombre(request.getParameter("nombre"));
-			usuario.setPassword(request.getParameter("password"));
+			usuario.setApellidos(request.getParameter("apellidos"));
+			usuario.setCiudad(request.getParameter("ciudad"));
+		
 			altaUsuario(usuario);
+			
+			/*una vez dado de alta aÃ±adir el ususario a la List*/
+			/* listaUsuarios.add(usuario) */
+			
 		}else if (accion.equalsIgnoreCase(EDITAR)) {
 			Usuario usuario;
 			try {
@@ -179,24 +190,7 @@ public class UsuarioServlet extends HttpServlet {
 					usuario.setNombre(request.getParameter("nombre"));
 					usuario.setPassword(request.getParameter("password"));
 					usuario.setUsuario(request.getParameter("usuario"));
-					//parámetros del formulario de dirección
-					String calle = request.getParameter("calle");
-					int codigoPostal = Integer.parseInt(request.getParameter("codigo_postal"));
-					String ciudad = request.getParameter("ciudad");
-					String pais = request.getParameter("pais");
-					
-					// añadimos la dirección al usuario. 1º la buscamos en el usuario, si tiene la actualizamos, si no la creamos
-					Direccion direccion = null;
-					if (usuario.getDireccion()!=null) {
-						direccion = usuario.getDireccion();
-						direccion.setCalle(calle);
-						direccion.setCiudad(ciudad);
-						direccion.setCodigoPostal(codigoPostal);
-						direccion.setPais(pais);
-					}else{
-						direccion = new Direccion(calle, ciudad, codigoPostal, pais);
-					}
-					usuario.setDireccion(direccion);
+					usuario.setCiudad(request.getParameter("ciudad"));
 					
 					//hacemos el update en la bbdd
 					modificarUsuario(usuario);
@@ -229,7 +223,7 @@ public class UsuarioServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		 }
-		}
+		
 		config.getServletContext().getRequestDispatcher(pagina).forward(request, response);
 	}
 	/**
@@ -243,7 +237,6 @@ public class UsuarioServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	/**
 	 * Borra los datos de un usuario con el UsuarioDao
@@ -256,7 +249,6 @@ public class UsuarioServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	/**
 	 * Crea un usuario en la base de datos con el UsuarioDao

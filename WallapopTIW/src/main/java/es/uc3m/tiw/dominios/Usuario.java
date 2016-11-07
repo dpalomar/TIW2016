@@ -29,31 +29,28 @@ public class Usuario {
 	private String nombre;
 	@Column(length = 30)
 	private String apellidos;
-	@Column(nullable = false, length = 10, unique = true)
-	private String usuario;
+	@Column
+	private String ciudad;
 	@Column(nullable = false)
 	private String password;
-	
-	@OneToOne(cascade = ALL)
-	private Direccion direccion;
+	@Column(nullable = false)
+	private String email;
+
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Usuario(String nombre, String apellidos, String usuario,
-			String password) {
+	public Usuario(String nombre, String apellidos, String ciudad,
+			String password, String email) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.usuario = usuario;
+		this.ciudad = ciudad;
 		this.password = password;
+		this.email = email;
 	}
-	public Usuario(String usuario, String password) {
-		super();
-		this.usuario = usuario;
-		this.password = password;
-	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -66,17 +63,23 @@ public class Usuario {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public String getUsuario() {
-		return usuario;
+	public String getCiudad() {
+		return ciudad;
 	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	/**
 	 * @return the id
@@ -90,13 +93,5 @@ public class Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Direccion getDireccion() {
-		return direccion;
-	}
-	/**
-	 * @param direccion the direccion to set
-	 */
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
-	}
+	
 }

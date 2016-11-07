@@ -27,29 +27,26 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import es.uc3m.tiw.dominios.Usuario;
+//import es.uc3m.tiw.Conector;
 import es.uc3m.tiw.daos.UsuarioDAO;
 import es.uc3m.tiw.daos.UsuarioDAOImpl;
 
 	/**
 	 * 
 	 * 
-	 * @author David Palomar
+	 * @author Grupo 3 - TIW 2016
 	 */
-@WebServlet(
-		urlPatterns="/login",
-		loadOnStartup=1,
-		initParams={@WebInitParam(name="configuracion", value="es.uc3m.tiw.lab2.persistencia")}
-		)
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final String LOGIN_JSP = "/login.jsp";
-	private static final String LISTADO_JSP = "/listado.jsp";
 	private static final String ERROR_JSP = "/error.jsp";
+	private static final String HOME_JSP = "/home.jsp";
 	private static final long serialVersionUID = 1L;
 	private ServletConfig config;
-	//private Usuario usuario;
+	private Usuario usuario;
 	private List<Usuario> usuarios;
 	private UsuarioDAO dao;   
 	@PersistenceContext(unitName="WallapopTIW")
@@ -60,43 +57,6 @@ public class LoginServlet extends HttpServlet {
 				@Override
 				public void init(ServletConfig config) throws ServletException {
 					this.config = config;
-					// creamos unos usuarios de prueba al inicio para que no falle dao.listarUsuarios();
-					Usuario u1 = new Usuario("Juan", "Sanz", "jsanz", "123456");
-					Usuario u2 = new Usuario("Ana", "Alba", "aalba", "123456");
-					Usuario u3 = new Usuario("Benito", "Bueno", "bbueno", "123456");
-					Usuario u4 = new Usuario("Carlos", "Colmenar", "ccolme", "123456");
-					try {
-						ut.begin();
-						em.persist(u1);
-						em.persist(u2);
-						em.persist(u3);
-						em.persist(u4);
-						
-
-						ut.commit();
-
-					} catch (SecurityException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IllegalStateException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (NotSupportedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (SystemException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (RollbackException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (HeuristicMixedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (HeuristicRollbackException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
 					
 					dao = new UsuarioDAOImpl(); 
 					dao.setConexion(em);
@@ -119,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			String usuario = request.getParameter("email");
+			String user = request.getParameter("email");
 			String password = request.getParameter("clave");
 			String mensaje ="";
 			String pagina = "";
@@ -133,12 +93,18 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			/*try {
+				productos = (List<Usuario>) dao.listarProductos();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 			
 			Usuario u = comprobarUsuario(user, password);
 			if (u != null){
 				
 				
-				pagina = LISTADO_JSP;
+				pagina = HOME_JSP;
 				request.setAttribute("usuarios", usuarios);
 				sesion.setAttribute("usuario", u);
 				sesion.setAttribute("autenticado", true);
