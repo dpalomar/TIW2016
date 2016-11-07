@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.uc3m.tiw.dominios;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -9,51 +6,52 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import es.uc3m.tiw.dominios.Direccion;
+
+import javax.persistence.OneToOne;
 import static javax.persistence.CascadeType.ALL;
 
 /**
- * @author David Palomar
+ * @author Grupo 3 - TIW 2016
  *
  */
 @Entity
 @Table(name="USUARIOS")
+@XmlRootElement
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = AUTO)
 	private int id;
 	@Column(nullable = false, length = 15)
 	private String nombre;
-	@Column(length = 30)
+	@Column(length = 35)
 	private String apellidos;
-	@Column(nullable = false, length = 10, unique = true)
+	@Column(nullable = false, name = "email", unique = true)
 	private String usuario;
-	@Column(nullable = false)
+	@Column(nullable = false, name = "clave" )
 	private String password;
+	@Column(name = "ciudad")
+	private String ciudad;
 	
-	@OneToOne(cascade = ALL)
-	private Direccion direccion;
+	/*relacionessss tenerlas en cuenta*/
+	/*@ManyToMany*/
+	/*@JoinTable*/
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Usuario(String nombre, String apellidos, String usuario,
-			String password) {
+	public Usuario(String nombre, String apellidos, String email,
+			String password, String ciudad) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.usuario = usuario;
 		this.password = password;
+		this.ciudad = ciudad;
 	}
-	public Usuario(String usuario, String password) {
-		super();
-		this.usuario = usuario;
-		this.password = password;
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -78,6 +76,12 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 	/**
 	 * @return the id
 	 */
@@ -90,13 +94,5 @@ public class Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Direccion getDireccion() {
-		return direccion;
-	}
-	/**
-	 * @param direccion the direccion to set
-	 */
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
-	}
+	
 }
