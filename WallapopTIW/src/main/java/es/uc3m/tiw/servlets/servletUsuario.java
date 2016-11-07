@@ -25,10 +25,8 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import es.uc3m.tiw.dominios.Usuario;
-//import es.uc3m.tiw.Conector;
 import es.uc3m.tiw.daos.UsuarioDAO;
 import es.uc3m.tiw.daos.UsuarioDAOImpl;
-
 
 /**
  * @author Grupo 3 - TIW 2016
@@ -166,11 +164,6 @@ public class servletUsuario extends HttpServlet {
 		String accion = request.getParameter("accion");
 		HttpSession sesion = request.getSession();
 		String pagina = "/login.jsp";
-		if ((sesion.getAttribute("autenticado").toString()).equalsIgnoreCase("true")) {
-			Usuario usuarioAutenticado = (Usuario) sesion.getAttribute("usuario");
-			String nick = usuarioAutenticado.getUsuario();
-			String password = usuarioAutenticado.getPassword();
-			pagina = String.format("/login?nombre=%s&clave=%s",nick, password);
 		
 		if (accion.equalsIgnoreCase(ALTA)) {
 			Usuario usuario = new Usuario();
@@ -230,7 +223,7 @@ public class servletUsuario extends HttpServlet {
 				e.printStackTrace();
 			}
 		 }
-		}
+		
 		config.getServletContext().getRequestDispatcher(pagina).forward(request, response);
 	}
 	/**

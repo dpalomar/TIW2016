@@ -42,8 +42,8 @@ public class servletLogin extends HttpServlet {
 	 * 
 	 */
 	private static final String LOGIN_JSP = "/login.jsp";
-	private static final String LISTADO_JSP = "/listado.jsp";
 	private static final String ERROR_JSP = "/error.jsp";
+	private static final String HOME_JSP = "/home.jsp";
 	private static final long serialVersionUID = 1L;
 	private ServletConfig config;
 	private Usuario usuario;
@@ -93,12 +93,18 @@ public class servletLogin extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			/*try {
+				productos = (List<Usuario>) dao.listarProductos();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 			
 			Usuario u = comprobarUsuario(user, password);
 			if (u != null){
 				
 				
-				pagina = LISTADO_JSP;
+				pagina = HOME_JSP;
 				request.setAttribute("usuarios", usuarios);
 				sesion.setAttribute("usuario", u);
 				sesion.setAttribute("autenticado", true);
