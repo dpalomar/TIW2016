@@ -78,7 +78,7 @@
         <div class="col-md-4">
           <div class="container well well-lg" style="background-color: white">
 
-            <form class="form-signin">
+            <form class="form-signin" action="usuario" method="post">
               <h2 class="form-signin-heading text-center"><b>Regístrate</b></h2>
               <h3 class="text-center">Es gratis y lo será siempre!</h3>
               </br>
