@@ -45,7 +45,7 @@ public class Producto implements Serializable {
 	protected String estado = "Disponible"; /*Estado inicial al dar de alta producto*/
 	
 	@OneToOne(cascade = ALL)
-	protected Precio precio;
+	public Precio precio;
 	
 	@ManyToOne(cascade = ALL)
 	protected Usuario usuario;
