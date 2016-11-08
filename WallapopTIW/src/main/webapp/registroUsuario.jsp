@@ -87,42 +87,42 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="inputNombre" class="sr-only">Nombre</label>
-                    <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" required>
+                    <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" name="nombre" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                  <label for="inputApellidos" class="sr-only">Apellidos</label>
-                 <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" required>
+                 <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" name="apellidos" required>
                 </div>
               </div>
 
               <div class="form-group">
               <label for="inputEmail" class="sr-only">Email</label>
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
               </div>
 
               <div class="form-group">
               <label for="inputPassword" class="sr-only">Contraseña</label>
-              <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="clave" required>
               </div>
 
               <div class="form-group">
               <label for="inputPassword2" class="sr-only">Repetir Contraseña</label>
-              <input type="password" id="inputPassword2" class="form-control" placeholder="Repetir Contraseña" required>
+              <input type="password" id="inputPassword2" class="form-control" placeholder="Repetir Contraseña" name="clave2" required>
               </div>
 
               <div class="form-group">
               <label for="inputCiudad" class="sr-only">Ciudad</label>
-              <input type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" required>
+              <input type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" name="ciudad" required>
               </div>
               <div class="checkbox" style="text-align: auto !important">
                 <label>
                     <input type="checkbox" value="condiciones"> Acepto las <a href="#">Condiciones</a> y la <a href="#">Política de datos</a>, incluido el <a href="#">uso de cookies</a>
                 </label>
               </div>
-              <input type="hidden" name="accion" value="ALTA" >
+              
               <button class="btn btn-lg btn-success btn-block" type="submit">Registrarse</button>
-            
+              <input type="hidden" name="accion" value="ALTA" >
             </form>
 
           </div> <!-- /container -->

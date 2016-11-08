@@ -105,12 +105,13 @@
 				id="ciudad" value="${usuario.ciudad }"  ><br>
 			<label for="clave">Password:</label> <input
 				type="password" name="password" id="clave" value="${usuario.password }">
+				 <input  name="id" id="id" value="${usuario.id }" type="hidden"><br> 
 			<input type="hidden" value="EDITAR" name="accion">
 		</fieldset>
 		<input type="submit" value="Modificar">
 
 	</form>
-	<td><a href="UsuarioServlet?id=${usuario.id }&accion=BORRAR }">Borrar</a></td>
+	<td><a href="usuario?id=${usuario.id }&accion=BORRAR">Borrar</a></td>
 
                                
          </div>

@@ -59,7 +59,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		ut.begin();
 		em.persist(nuevoUsuario);
 		ut.commit();
-		em.flush();
+		//em.flush();
 		return nuevoUsuario;/*recuperarUnUsuarioPorNombre(nuevoUsuario.getEmail());*/
 		//por que hace falta devolver un usuario
 	}

@@ -192,6 +192,7 @@ public class UsuarioServlet extends HttpServlet {
 					usuario.setEmail(request.getParameter("email"));
 					usuario.setCiudad(request.getParameter("ciudad"));
 					
+					sesion.setAttribute("usuario", usuario);
 					//hacemos el update en la bbdd
 					modificarUsuario(usuario);
 					
