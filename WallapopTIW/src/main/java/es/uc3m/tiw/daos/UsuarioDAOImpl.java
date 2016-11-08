@@ -60,7 +60,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		em.persist(nuevoUsuario);
 		ut.commit();
 		em.flush();
-		return recuperarUnUsuarioPorNombre(nuevoUsuario.getUsuario());
+		return nuevoUsuario;/*recuperarUnUsuarioPorNombre(nuevoUsuario.getEmail());*/
+		//por que hace falta devolver un usuario
 	}
 	@Override
 	public void borrarUsuario(Usuario usuario) throws SQLException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException, SystemException, NotSupportedException{

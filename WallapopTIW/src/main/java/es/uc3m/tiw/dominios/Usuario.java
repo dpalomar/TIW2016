@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import es.uc3m.tiw.dominios.Direccion;
 import static javax.persistence.CascadeType.ALL;
 
 /**

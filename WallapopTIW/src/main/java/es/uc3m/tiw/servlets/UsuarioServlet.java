@@ -168,7 +168,7 @@ public class UsuarioServlet extends HttpServlet {
 		if (accion.equalsIgnoreCase(ALTA)) {
 			Usuario usuario = new Usuario();
 			
-			usuario.setUsuario(request.getParameter("email"));
+			usuario.setEmail(request.getParameter("email"));
 			usuario.setPassword(request.getParameter("clave"));
 			usuario.setNombre(request.getParameter("nombre"));
 			usuario.setApellidos(request.getParameter("apellidos"));
@@ -189,7 +189,7 @@ public class UsuarioServlet extends HttpServlet {
 					usuario.setApellidos(request.getParameter("apellidos"));
 					usuario.setNombre(request.getParameter("nombre"));
 					usuario.setPassword(request.getParameter("password"));
-					usuario.setUsuario(request.getParameter("usuario"));
+					usuario.setEmail(request.getParameter("email"));
 					usuario.setCiudad(request.getParameter("ciudad"));
 					
 					//hacemos el update en la bbdd

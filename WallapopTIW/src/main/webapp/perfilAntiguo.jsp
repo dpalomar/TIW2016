@@ -93,9 +93,7 @@
         </div>
 		<br /><br />
  
-		<form class="form-horizontal">
- 
-					<div class="form-group">
+		<form action="usuario" class="form-horizontal" method="post"><div class="form-group">
 					    <label class="col-sm-2 control-label" for="inputNombre">Nombre</label>
 					    <div class="col-sm-4">
 					      <input class="form-control" type="text" id="inputNombre" placeholder="Nombre">
@@ -145,14 +143,16 @@
 							<button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved"></span> Guardar</button>
 							
 							<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
- 
+ 							<input type="hidden" name="accion" value="EDITAR">
  
 					    </div>
-					  </div>
+					  </div> </form>
+ 
+					
  
  
  
-		</form>	
+		
  
  
  
