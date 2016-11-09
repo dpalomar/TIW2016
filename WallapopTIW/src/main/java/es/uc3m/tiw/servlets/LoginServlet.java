@@ -26,10 +26,13 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import es.uc3m.tiw.dominios.Producto;
 import es.uc3m.tiw.dominios.Usuario;
 //import es.uc3m.tiw.Conector;
 import es.uc3m.tiw.daos.UsuarioDAO;
 import es.uc3m.tiw.daos.UsuarioDAOImpl;
+import es.uc3m.tiw.daos.ProductoDAO;
+import es.uc3m.tiw.daos.ProductoDAOImpl;
 
 	/**
 	 * 
@@ -48,7 +51,9 @@ public class LoginServlet extends HttpServlet {
 	private ServletConfig config;
 	private Usuario usuario;
 	private List<Usuario> usuarios;
-	private UsuarioDAO dao;   
+	private List<Producto> productos;
+	private UsuarioDAO dao;
+	private ProductoDAO pdao; 
 	@PersistenceContext(unitName="WallapopTIW")
 	private EntityManager em;
 	@Resource
@@ -62,6 +67,9 @@ public class LoginServlet extends HttpServlet {
 					dao.setConexion(em);
 					dao.setTransaction(ut);
 					
+					pdao = new ProductoDAOImpl(); 
+					pdao.setConexion(em);
+					pdao.setTransaction(ut);
 			
 		}
 	       
@@ -71,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			config.getServletContext().getRequestDispatcher(LOGIN_JSP).forward(request, response);
+			//config.getServletContext().getRequestDispatcher(LOGIN_JSP).forward(request, response);
 		}
 
 		/**
@@ -93,19 +101,19 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			/*try {
-				productos = (List<Usuario>) dao.listarProductos();
+			try {
+				productos = (List<Producto>) pdao.listarProductos();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
 			
 			Usuario u = comprobarUsuario(user, password);
 			if (u != null){
 				
 				
 				pagina = HOME_JSP;
-				request.setAttribute("usuarios", usuarios);
+				request.setAttribute("productos", productos);
 				sesion.setAttribute("usuario", u);
 				sesion.setAttribute("autenticado", true);
 				

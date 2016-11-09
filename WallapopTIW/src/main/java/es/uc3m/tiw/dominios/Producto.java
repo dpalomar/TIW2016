@@ -13,16 +13,16 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name = "producto")
 public class Producto implements Serializable {
 	
-	public Producto(Long id, String tituloProducto, String categoriaProducto, String descripcion, String imagenProducto,
+	public Producto(int id, String tituloProducto, String categoriaProducto, String descripcion, String imagenProducto,
 			String estadoProducto, Precio precioProducto) {
 		super();
 		this.id = id;
-		this.tituloProducto = tituloProducto;
-		this.categoriaProducto = categoriaProducto;
+		this.titulo = tituloProducto;
+		this.categoria = categoriaProducto;
 		this.descripcion = descripcion;
-		this.imagenProducto = imagenProducto;
-		this.estadoProducto = estadoProducto;
-		this.precioProducto = precioProducto;
+		this.imagen = imagenProducto;
+		this.estado = estadoProducto;
+		this.precio = precioProducto;
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -30,49 +30,49 @@ public class Producto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = AUTO)
-	private Long id;
+	private int id;
 
 	
 	@Column
-	protected String tituloProducto;
+	protected String titulo;
 	@Column(nullable = false, length = 10, name = "clave")
-	protected String categoriaProducto;
+	protected String categoria;
 	@Column ( length = 45)
 	protected String descripcion;
 	@Column
-	protected String imagenProducto;
+	protected String imagen;
 	@Column
-	protected String estadoProducto = "Disponible"; /*Estado inicial al dar de alta producto*/
+	protected String estado = "Disponible"; /*Estado inicial al dar de alta producto*/
 	
 	@OneToOne(cascade = ALL)
-	private Precio precioProducto;
+	private Precio precio;
 
 	public Producto() {
 		
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getTituloProducto() {
-		return tituloProducto;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setTituloProducto(String tituloProducto) {
-		this.tituloProducto = tituloProducto;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getCategoriaProducto() {
-		return categoriaProducto;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setCategoriaProducto(String categoriaProducto) {
-		this.categoriaProducto = categoriaProducto;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getDescripcion() {
@@ -83,30 +83,31 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getImagenProducto() {
-		return imagenProducto;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setImagenProducto(String imagenProducto) {
-		this.imagenProducto = imagenProducto;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
-	public String getEstadoProducto() {
-		return estadoProducto;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setEstadoProducto(String estadoProducto) {
-		this.estadoProducto = estadoProducto;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public Precio getPrecioProducto() {
-		return precioProducto;
+	public Precio getPrecio() {
+		return precio;
 	}
 
-	public void setPrecioProducto(Precio precioProducto) {
-		this.precioProducto = precioProducto;
+	public void setPrecio(Precio precio) {
+		this.precio = precio;
 	}
-	
+
+
 	
 
 }
