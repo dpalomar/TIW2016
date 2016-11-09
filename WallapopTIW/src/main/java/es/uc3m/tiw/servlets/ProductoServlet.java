@@ -153,12 +153,12 @@ public class ProductoServlet extends HttpServlet {
 	 * @throws IllegalStateException 
 	 * @throws SecurityException 
 	 */
-	private Usuario recuperarDatosProducto(HttpServletRequest request) throws SQLException, NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+	private Producto recuperarDatosProducto(HttpServletRequest request) throws SQLException, NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 		int pk = Integer.parseInt(request.getParameter("id"));
 		ut.begin();
-		Usuario usuario = dao.recuperarUnUsuarioPorClave(pk);
+		Producto producto = pdao.recuperarUnProductoPorClave(pk);
 		ut.commit();
-		return  usuario;
+		return  producto;
 	}
 
 	/**
@@ -170,34 +170,38 @@ public class ProductoServlet extends HttpServlet {
 		String pagina = "/login.jsp";
 		
 		if (accion.equalsIgnoreCase(ALTA)) {
-			Usuario usuario = new Usuario();
+			Producto producto = new Producto();
 			
-			usuario.setEmail(request.getParameter("email"));
-			usuario.setPassword(request.getParameter("clave"));
-			usuario.setNombre(request.getParameter("nombre"));
-			usuario.setApellidos(request.getParameter("apellidos"));
-			usuario.setCiudad(request.getParameter("ciudad"));
+			producto.setTitulo(request.getParameter("titulo"));
+			producto.setCategoria(request.getParameter("categoria"));
+			producto.setDescripcion(request.getParameter("descripcion"));
+			producto.setImagen(request.getParameter("imagen"));
+			producto.setEstado(request.getParameter("estado"));
+			producto.precio.setCantidad(request.getParameter("cantidad"));
+			producto.precio.setDivisa(request.getParameter("divisa"));
 		
-			altaUsuario(usuario);
+			altaProducto(producto);
 			
 			/*una vez dado de alta aÃ±adir el ususario a la List*/
 			/* listaUsuarios.add(usuario) */
 			
 		}else if (accion.equalsIgnoreCase(EDITAR)) {
-			Usuario usuario;
+			Producto producto;
 			try {
 				try {
-					//recuperamos el usuario de la bbdd
-					usuario = recuperarDatosUsuario(request);
-					// actualizamos los valores del usuario con los del formulario
-					usuario.setApellidos(request.getParameter("apellidos"));
-					usuario.setNombre(request.getParameter("nombre"));
-					usuario.setPassword(request.getParameter("password"));
-					usuario.setEmail(request.getParameter("email"));
-					usuario.setCiudad(request.getParameter("ciudad"));
+					//recuperamos el producto de la bbdd
+					producto = recuperarDatosProducto(request);
+					//Modificamos los datos
+					producto.setTitulo(request.getParameter("titulo"));
+					producto.setCategoria(request.getParameter("categoria"));
+					producto.setDescripcion(request.getParameter("descripcion"));
+					producto.setImagen(request.getParameter("imagen"));
+					producto.setEstado(request.getParameter("estado"));
+					producto.precio.setCantidad(request.getParameter("cantidad"));
+					producto.precio.setDivisa(request.getParameter("divisa"));
 					
 					//hacemos el update en la bbdd
-					modificarUsuario(usuario);
+					modificarProducto(producto);
 					
 					pagina="/Perfil.jsp";
 					
@@ -235,7 +239,7 @@ public class ProductoServlet extends HttpServlet {
 		config.getServletContext().getRequestDispatcher(pagina).forward(request, response);
 	}
 	/**
-	 * Modifica los datos del usuario con el UsuarioDao
+	 * Modifica los datos del producto con el ProductoDao
 	 * @param usuario
 	 */
 	private void modificarProducto(Producto producto){
@@ -247,7 +251,7 @@ public class ProductoServlet extends HttpServlet {
 		}
 	}
 	/**
-	 * Borra los datos de un usuario con el UsuarioDao
+	 * Borra los datos de un producto con el ProductoDao
 	 * @param usuario
 	 */
 	private void borrarProducto(Producto producto){
@@ -259,7 +263,7 @@ public class ProductoServlet extends HttpServlet {
 		}
 	}
 	/**
-	 * Crea un usuario en la base de datos con el UsuarioDao
+	 * Crea un producto en la base de datos con el ProductoDao
 	 * @param usuario
 	 */
 	private void altaProducto(Producto producto){

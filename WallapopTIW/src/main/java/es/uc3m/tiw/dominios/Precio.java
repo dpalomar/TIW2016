@@ -25,24 +25,24 @@ public class Precio implements Serializable{
 	@GeneratedValue(strategy = AUTO)
 	private Long id;
 	
-	protected int cantidad;
+	protected String cantidad;
 	protected String divisa;
 	
 	public Precio() {
 		
 	}
 	
-	public Precio(int cantidad, String divisa) {
+	public Precio(String cantidad, String divisa) {
 		super();
 		this.cantidad = cantidad;
 		this.divisa = divisa;
 	}
 
-	public int getCantidad() {
+	public String getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
 	}
 
