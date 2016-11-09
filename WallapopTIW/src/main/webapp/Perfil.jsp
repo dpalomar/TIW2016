@@ -107,9 +107,10 @@
 				type="password" name="password" id="clave" value="${usuario.password }">
 			<input type="hidden" value="EDITAR" name="accion">
 		</fieldset>
-		<input type="submit" value="Enviar">
+		<input type="submit" value="Modificar">
 
 	</form>
+	<td><a href="UsuarioServlet?id=${usuario.id }&accion=BORRAR }">Borrar</a></td>
 
                                
          </div>

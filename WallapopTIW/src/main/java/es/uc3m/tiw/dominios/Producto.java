@@ -13,17 +13,17 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name = "producto")
 public class Producto implements Serializable {
 	
-	public Producto(int id, String tituloProducto, String categoriaProducto, String descripcion, String imagenProducto,
-			String estadoProducto, Precio precioProducto) {
+	public Producto(int id, String titulo, String categoria, String descripcion, String imagen,
+			String estado, Precio precio) {
 		super();
 		this.id = id;
-		this.titulo = tituloProducto;
-		this.categoria = categoriaProducto;
+		this.titulo = titulo;
+		this.categoria = categoria;
 		this.descripcion = descripcion;
-		this.imagen = imagenProducto;
-		this.estado = estadoProducto;
-		this.precio = precioProducto;
-	}
+		this.imagen = imagen;
+		this.estado = estado;
+		this.precio = precio;
+		}
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,10 @@ public class Producto implements Serializable {
 	protected String estado = "Disponible"; /*Estado inicial al dar de alta producto*/
 	
 	@OneToOne(cascade = ALL)
-	private Precio precio;
+	protected Precio precio;
+	
+	@ManyToOne(cascade = ALL)
+	protected Usuario usuario;
 
 	public Producto() {
 		

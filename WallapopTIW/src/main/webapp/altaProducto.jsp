@@ -76,7 +76,7 @@
     <div class="col-md-4">
       <div class="container well well-lg" style="background-color: white">
 
-        <form class="form-signin">
+        <form action="producto" class="form-signin" method="post">
           <h2 class="form-signin-heading text-center"><b>Da de alta un producto</b></h2>
           <h3 class="text-center">Verás que fácil es vender!</h3>
           </br>
@@ -140,6 +140,7 @@
                 <input type="checkbox" value="condiciones"> Acepto las <a href="#">Condiciones</a> y la <a href="#">Política de datos</a>, incluido el <a href="#">uso de cookies</a>
             </label>
           </div>
+          <input type="hidden" value="ALTA" name="accion">
           <button class="btn btn-lg btn-success btn-block" type="submit">Añadir Producto</button>
 
         </form>

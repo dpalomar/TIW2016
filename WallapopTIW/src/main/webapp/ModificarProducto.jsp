@@ -93,98 +93,30 @@
         </div>
 		<br /><br />
  
-		<form class="form-horizontal">
- 
-					<form class="form-signin">
-      
-          </br>
-          
-          <div class="form-group">
-          <label for="inputTituloProducto" class="sr-only">Titulo del Producto</label>
-          <input type="text" id="inputTituloProducto" class="form-control" placeholder="Título del Producto" required autofocus>
-          </div>
-          
-          <div class="form-group">
-          <label for="inputCategoria" class="sr-only">Categoria</label>
-          <select id="inputCategoria" class="form-control" required>
-            <option value="electronica" selected>Electr&oacute;nica</option>
-            <option value="moda">Moda y Complementos</option>
-            <option value="automoviles">Coches y Motos</option>
-            <option value="entretenimiento">Libros, Pel&iacute;culas y M&uacute;sica</option>
-            <option value="deporte">Deporte y ocio</option>
-            <option value="electrodomesticos">Electodom&eacute;sticos</option>
-            <option value="inmobiliaria">Inmobiliaria</option>
-            <option value="ninos">Ni&ntilde;os y Beb&eacute;s</option>  
-            <option value="gaming">Consolas y Videojuegos</option> 
-            <option value="servicios">Servicios</option> 
-            <option value="deco">Muebles, Deco y Jard&iacute;n</option>
-            <option value="otros">Otros</option>
-           </select>
-          </div>
+		<form action="usuario" method="post">
+		<fieldset>
+			<legend>Formulario de Edici&oacute;n de Usuarios</legend>
 
-          <div class="form-group">
-          <label for="inputDescripcion" class="sr-only">Descripcion</label>
-          <input type="text" id="inputDescripcion" class="form-control" placeholder="Descripción" maxlength="500" required>
-          </div>
+			<label for="titulo">Titulo:</label> <input type="text" name="titulo"
+				value="${producto.titulo }"><br> 
+			<label for="categoria">Categoria:</label> <input type="text" name="categoria"
+				value="${producto.categoria }"  ><br>
+            <label for="descripcion">Descripcion:</label> <input type="text" name="descripcion"
+				value="${producto.descripcion }"  ><br>
+			 <label for="imagen">Imagen:</label> <input type="text" name="imagen"
+				value="${producto.imagen }"><br>
+			<label for="estado">Estado:</label> <input
+				type="text" name="estado" value="${producto.estado}"><br>
+			<label for="precio">Cantidad:</label> <input
+				type="text" name="precio" value="${producto.precio.cantidad }"><br>
+				<label for="precio">Divisa:</label> <input
+				type="text" name="precio" value="${producto.precio.divisa }"><br>
+			<input type="hidden" value="EDITAR" name="accion">
+		</fieldset>
+		<input type="submit" value="Modificar">
 
-          <div class="row">
-            <div class="col-md-10">
-              <div class="form-group">
-                <label for="inputPrecio" class="sr-only">Precio</label>
-                <input type="number" id="inputPrecio" class="form-control" placeholder="Precio" required>
-              </div>
-            </div>
-            <div class="col-md-2">
-             <label for="inputDivisa" class="sr-only">Divisa</label>
-             <select id="inputDivisa" class="form-control" required>
-                <option value="euro" selected>€</option>
-                <option value="dolarAmericao">USD</option>
-                <option value="libraEsterlina">GBP</option>
-                <option value="realBrasileno">BRL</option>
-                <option value="pesoColombiano">COP</option>
-                <option value="pesoMexicano">MXN</option>
-                <option value="pesoArgentino">ARS</option> 
-             </select>
-            </div>
-          </div>
-          
-           <div class="form-group">
-          <label for="inputEstado">Estado del Producto</label>
-          <select id="inputEstado" class="form-control" required>
-            <option value="electronica" selected>Vendido</option>
-            <option value="moda">Reservado</option>
-            <option value="automoviles" selected>Disponible</option>
-           </select>
-          </div>
-          
-           <div class="form-group">
-            <label for="inputImagenProducto">Imagen del Producto</label>
-            <input type="file" accept=".jpg, image/*" id="inputImagenProducto">
-            <p class="help-block">La foto tiene que estar en formato jpg.</p>
-            </div>
-						<br />
-                        
-        <div class="col-md-2">
-            <img class="img-rounded center-block img-responsive" src="http://cdn.wallapop.com/shnm-portlet/images?pictureId=253765517&pictureSize=W640" alt="Generic placeholder image" height="240">
-        </div>
- 
-						<div class="form-group">
-					    <label class="col-sm-2 control-label" for="formGroup"></label>
-					    <div class="col-sm-4">
-					      
-							<button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved"></span> Guardar</button>
-							
-							<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
-                            </div>
- 
- 
-					    </div>
-					  </div>
- 
- 
- 
-		</form>	
- 
+	</form>
+	<a href="ProductoServlet?id=${producto.id }&accion=EDITAR }">Borrar</a>
  
  
 	

@@ -3,8 +3,6 @@ package es.uc3m.tiw.servlets;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -24,18 +22,24 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
-import es.uc3m.tiw.dominios.Usuario;
 import es.uc3m.tiw.daos.UsuarioDAO;
 import es.uc3m.tiw.daos.UsuarioDAOImpl;
 
+import es.uc3m.tiw.daos.ProductoDAO;
+import es.uc3m.tiw.daos.ProductoDAOImpl;
+
+import es.uc3m.tiw.dominios.Usuario;
+import es.uc3m.tiw.dominios.Producto;
+
 /**
- * @author Grupo 3 - TIW 2016
+ * Servlet implementation class ProductoServlet
  */
-@WebServlet("/usuario")
-public class UsuarioServlet extends HttpServlet {
+@WebServlet("/ProductoServlet")
+public class ProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ServletConfig config;
 	private UsuarioDAO dao;
+	private ProductoDAO pdao;
 	private Connection con;
 	private static final String ALTA="ALTA",EDITAR="EDITAR",BORRAR="BORRAR";
     @PersistenceContext(unitName="WallapopTIW")
@@ -45,7 +49,7 @@ public class UsuarioServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsuarioServlet() {
+    public ProductoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -56,7 +60,7 @@ public class UsuarioServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		this.config = config;
 		
-		dao = new UsuarioDAOImpl();
+		pdao = new ProductoDAOImpl();
 		dao.setConexion(em);
 		dao.setTransaction(ut);
 	}
@@ -92,15 +96,15 @@ public class UsuarioServlet extends HttpServlet {
 						try {
 							try {
 								if (accion.equalsIgnoreCase(ALTA)) {
-									pagina = "/registroUsuario.jsp";
+									pagina = "/altaProducto.jsp";
 									
 								}else if (accion.equalsIgnoreCase(EDITAR)) {
-									Usuario usuario = recuperarDatosUsuario(request);
-									request.setAttribute("usuario", usuario);
+									Producto producto = recuperarDatosProducto(request);
+									request.setAttribute("producto", producto);
 									pagina = "/Perfil.jsp";
 									
 								}else if (accion.equalsIgnoreCase(BORRAR)) {
-									Usuario usuario = recuperarDatosUsuario(request);
+									Usuario usuario = recuperarDatosProducto(request);
 									pagina = "/login.jsp";
 									borrarUsuario(usuario);
 								}
@@ -149,7 +153,7 @@ public class UsuarioServlet extends HttpServlet {
 	 * @throws IllegalStateException 
 	 * @throws SecurityException 
 	 */
-	private Usuario recuperarDatosUsuario(HttpServletRequest request) throws SQLException, NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
+	private Usuario recuperarDatosProducto(HttpServletRequest request) throws SQLException, NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException {
 		int pk = Integer.parseInt(request.getParameter("id"));
 		ut.begin();
 		Usuario usuario = dao.recuperarUnUsuarioPorClave(pk);
