@@ -120,7 +120,7 @@ public class LoginServlet extends HttpServlet {
 			
 		}
 
-		private Usuario  comprobarUsuario(String user, String password) {
+		private Usuario comprobarUsuario(String user, String password) {
 			Usuario u = null;
 			for (Usuario usuario : usuarios) {
 				if (user.equals(usuario.getEmail()) && password.equals(usuario.getPassword())){
