@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Wallapop - Mi Perfil2</title>
+    <title>Wallapop - Mi Perfil</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -89,48 +89,29 @@
    <div class="container well">
    
 		<h2>Tu Perfil de Usuario</h2>
-     	 <form action = "servletImagen" method= "post" enctype="multipart/form-data" >
-                                    <input style="display:none; margin-left:475px" class="editperfil" type="file" id="files" name="files[]"  />
-                                    <input type=submit name="imagenPerfil"  style="color:white" class="editperfil" id="desc" value="Guardar imagen" >
-                                    <input type="hidden" name="accion" value="imagenPerfil" >
-                                    </form> 
-					               
-                                    <br />
-                                    <output id="list" style="margin-left:475px"></output>
-                            
-                               	<% if (usuario.getImagenPerfil()!=null){ %>
-                               		                              
-                                    <img style="margin-left:475px" class="primerafot" id="primerafot" src="resources/images/perfil/<%=usuario.getImagenPerfil()%>">
-                                <%}else{ %>
-                                	 <img style="margin-left:475px" class="primerafot" id="primerafot" src="resources/images/perfil/imagenPerfil.jpg">
-                                <%
-                                }
-                                %>  		
-                                </div>
+
                                 
-                              <form action="usuario" method ="post">  
-                                <p id="name">- Nombre:</p><p style ="color:black;" ><%=usuario.getNombre()%> <%=usuario.getApellidos()%>
-                                  <input style="display:none" name ="nombre" class="editperfil" type="text"  id="desc" placeholder="nombre"><br style="display:none"class="editperfil">
-                                   <input style="display:none" name ="apellido1" class="editperfil" type="text"  id="desc" placeholder="Apellidos"><br style="display:none"class="editperfil">
-                         
-                                <p id="desc1">- Descripci&oacute;n:</p>
-                                <% if(usuario.getDescripcion()!=null){ %>
-                                <p style ="color:black;" ><%=usuario.getDescripcion()%></p>
-                                <%}else { %>
-                                <p style ="color:black;" >Añade una descripci&oacute;n...</p>
-                                <%} %>
-                                
-                                <input style="display:none" name ="descripcion" class="editperfil" type="text"  id="desc" placeholder="Introduce una descripci&oacute;n">
-                                <p id="inter1">- Intereses</p>
-                                <% if(usuario.getIntereses()!=null){ %>
-                                <p style ="color:black;" ><%=usuario.getIntereses()%></p>
-                                <%}else { %>
-                                <p style ="color:black;" >Añade unos intereses...</p>
-                                <%} %>
-                                <input style="display:none" name ="intereses" class="editperfil" type="text"  id="inter" placeholder="Separados por comas">
-                               	<button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-floppy-saved"></span> Modificar Perfil</button>
-                               	<input type="hidden" name="accion" value="EDITAR">
-                               </form>
+	<form action="usuario" method="post">
+		<fieldset>
+			<legend>Formulario de Edición de Usuarios</legend>
+
+			<label for="nom">Nombre:</label> <input type="text" name="nombre"
+				id="nom" value="${usuario.nombre }"><br> 
+			<label for="apellidos">Apellidos:</label> <input type="text" name="apellidos"
+				id="apellidos" value="${usuario.apellidos }"  ><br>
+            <label for="email">Nick:</label> <input type="text" name="email"
+				id="email" value="${usuario.email }"  ><br>
+			 <label for="ciudad">Ciudad:</label> <input type="text" name="ciudad"
+				id="ciudad" value="${usuario.ciudad }"  ><br>
+			<label for="clave">Password:</label> <input
+				type="password" name="password" id="clave" value="${usuario.password }">
+			<input type="hidden" value="EDITAR" name="accion">
+		</fieldset>
+		<input type="submit" value="Enviar">
+
+	</form>
+
+                               
          </div>
      
 <footer style="background-color: #555;
