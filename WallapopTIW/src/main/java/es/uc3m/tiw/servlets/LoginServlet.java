@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
 	private static final String HOME_JSP = "/home.jsp";
 	private static final long serialVersionUID = 1L;
 	private ServletConfig config;
-	private Usuario usuario;
 	private List<Usuario> usuarios;
 	private List<Producto> productos;
 	private UsuarioDAO dao;
@@ -79,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			//config.getServletContext().getRequestDispatcher(LOGIN_JSP).forward(request, response);
+			config.getServletContext().getRequestDispatcher(LOGIN_JSP).forward(request, response);
 		}
 
 		/**
@@ -87,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			String user = request.getParameter("email");
+			String email = request.getParameter("email");
 			String password = request.getParameter("clave");
 			String mensaje ="";
 			String pagina = "";
@@ -108,7 +107,7 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			Usuario u = comprobarUsuario(user, password);
+			Usuario u = comprobarUsuario(email, password);
 			if (u != null){
 				
 				
@@ -128,12 +127,12 @@ public class LoginServlet extends HttpServlet {
 			
 		}
 
-		private Usuario comprobarUsuario(String user, String password) {
+		private Usuario comprobarUsuario(String email, String password) {
 			Usuario u = null;
 			for (Usuario usuario : usuarios) {
-				if (user.equals(usuario.getEmail()) && password.equals(usuario.getPassword())){
+				if (email.equals(usuario.getEmail()) && password.equals(usuario.getPassword())){
 					u = usuario;
-					break;
+					//break;
 				}
 			}
 			return u;

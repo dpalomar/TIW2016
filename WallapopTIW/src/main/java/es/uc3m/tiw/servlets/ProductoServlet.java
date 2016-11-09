@@ -61,8 +61,8 @@ public class ProductoServlet extends HttpServlet {
 		this.config = config;
 		
 		pdao = new ProductoDAOImpl();
-		dao.setConexion(em);
-		dao.setTransaction(ut);
+		pdao.setConexion(em);
+		pdao.setTransaction(ut);
 	}
 
 	/**
@@ -104,9 +104,9 @@ public class ProductoServlet extends HttpServlet {
 									pagina = "/Perfil.jsp";
 									
 								}else if (accion.equalsIgnoreCase(BORRAR)) {
-									Usuario usuario = recuperarDatosProducto(request);
+									Producto producto = recuperarDatosProducto(request);
 									pagina = "/login.jsp";
-									borrarUsuario(usuario);
+									borrarProducto(producto);
 								}
 							} catch (SecurityException e) {
 								// TODO Auto-generated catch block
@@ -238,9 +238,9 @@ public class ProductoServlet extends HttpServlet {
 	 * Modifica los datos del usuario con el UsuarioDao
 	 * @param usuario
 	 */
-	private void modificarUsuario(Usuario usuario){
+	private void modificarProducto(Producto producto){
 		try {
-			dao.actualizarUsuario(usuario);
+			pdao.actualizarProducto(producto);
 		} catch (SQLException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SystemException | NotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -250,9 +250,9 @@ public class ProductoServlet extends HttpServlet {
 	 * Borra los datos de un usuario con el UsuarioDao
 	 * @param usuario
 	 */
-	private void borrarUsuario(Usuario usuario){
+	private void borrarProducto(Producto producto){
 		try {
-			dao.borrarUsuario(usuario);
+			pdao.borrarProducto(producto);
 		} catch (SQLException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SystemException | NotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -262,9 +262,9 @@ public class ProductoServlet extends HttpServlet {
 	 * Crea un usuario en la base de datos con el UsuarioDao
 	 * @param usuario
 	 */
-	private void altaUsuario(Usuario usuario){
+	private void altaProducto(Producto producto){
 		try {
-			dao.crearUsuario(usuario);
+			pdao.crearProducto(producto);
 		} catch (SQLException | SecurityException | IllegalStateException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SystemException | NotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

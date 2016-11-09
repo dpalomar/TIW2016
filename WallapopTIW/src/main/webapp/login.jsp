@@ -56,7 +56,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form action="login" method="post" class="navbar-form navbar-right">
             <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control" name="email">
+              <input type="email" placeholder="Email" class="form-control" name="email">
             </div>
             <div class="form-group">
               <input type="password" placeholder="Password" class="form-control" name="clave">

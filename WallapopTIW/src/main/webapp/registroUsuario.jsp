@@ -120,6 +120,7 @@
                     <input type="checkbox" value="condiciones"> Acepto las <a href="#">Condiciones</a> y la <a href="#">Política de datos</a>, incluido el <a href="#">uso de cookies</a>
                 </label>
               </div>
+              <input type="hidden" name="accion" value="ALTA" >
               <button class="btn btn-lg btn-success btn-block" type="submit">Registrarse</button>
             
             </form>
