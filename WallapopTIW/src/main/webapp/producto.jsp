@@ -61,13 +61,13 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#" style="padding: 7px;"><img src="https://lh3.googleusercontent.com/eiHGogXLz3iBRZhKrdr7FOkw6q5P_iuGSwqGWmd1yRzMcc-B7V6xIKR9wzuqDrD61K4=w300" alt="Wallapop" height="38" width="38" ></a> 
-        <a class="navbar-brand" href="#">Wallapop TIW</a>
+        <a class="navbar-brand" href="/home.jsp">Wallapop TIW</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-              <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li class="active"><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
+              <li><a href="/home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li class="active"><a href="/misProductos.jsp"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
+              <li><a href="/Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -90,24 +90,24 @@
       
       <div class="row"> 
         <div class="col-md-8">
-          <img class="img-rounded center-block img-responsive" src="http://cdn.wallapop.com/shnm-portlet/images?pictureId=253765517&pictureSize=W640" alt="Generic placeholder image" width="750" height="600">
+          <img class="img-rounded center-block img-responsive" src="${producto.imagen }" alt="Generic product image" width="750" height="600">
         </div>  
 
         <div class="col-md-4 ">
 
           <div class="row" >
             <div class="well">
-              <h2 style="color: #23C5B2">Precio: 220€</h2>
-              <h3> Título: Tápiz rústico hecho a mano </h3>
-              <p> Descripción: Impresionante tapiz pedido por encargo y patrón propio de la familia como guía para bordar este bonito paisaje rústico. Hecho a mano por una tapicería de prestigio de La Val d'Aran. Con soporte de hierro forjado. Es único y exclusivo 97x110cm</p>
-              <p><b><i>Categoría: Muebles, Deco y Jardín </i></b></p>
+              <h2 style="color: #23C5B2">Precio: ${producto.precio.cantidad }</h2>
+              <h3> Título: ${producto.titulo } </h3>
+              <p> Descripción: ${producto.descripcion }</p>
+              <p><b><i>Categoría: ${producto.categoria }i></b></p>
               <div id="googleMap"></div>
             </div>
         </div>
       
         <div class="row" >
             <div class="well">
-              <h3>Usuario: LIPDeco A.</h3>
+              <h3>Usuario: ${producto.usuario }</h3>
               <p>Si estás interesado en este producto, puedes contactar con el vendedor: </p>
               <a class="btn btn-info" href="#" role="button" style="background-color: #23C5B2"><span class="glyphicon glyphicon-envelope"></span> CHAT</a>
             </div>

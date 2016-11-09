@@ -54,14 +54,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="padding: 7px;"><img src="https://lh3.googleusercontent.com/eiHGogXLz3iBRZhKrdr7FOkw6q5P_iuGSwqGWmd1yRzMcc-B7V6xIKR9wzuqDrD61K4=w300" alt="Wallapop" height="38" width="38" ></a> 
-        <a class="navbar-brand" href="#">Wallapop TIW</a>
+          <a class="navbar-brand" style="padding: 7px;"><img src="https://lh3.googleusercontent.com/eiHGogXLz3iBRZhKrdr7FOkw6q5P_iuGSwqGWmd1yRzMcc-B7V6xIKR9wzuqDrD61K4=w300" alt="Wallapop" height="38" width="38" ></a> 
+        <a class="navbar-brand" href="/home.jsp">Wallapop TIW</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-              <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
+              <li class="active"><a href="/home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a href="/misProductos.jsp"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
+              <li><a href="/Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -71,8 +71,18 @@
     </nav>
 
 
+    <nav class="navbar">
+
+      <ol class="breadcrumb" style="background-color: #23C5B2; color: white">
+        <li><a href="/home.jsp" style="color: white"><b>Home</b></a></li>
+      </ol>
+
+    </nav>
+
+
     <div class="container text-center" style="padding: 15px">
       <div class="row">
+
         <div class="col-md-3 well">
           <div class="well"  style="background-color: white">
           <h4>Búsqueda Simple</h4>
@@ -97,46 +107,25 @@
             </div>
           </div>
         </div>
-        
-        <div class="col-md-3 well">
-          <img class="img-rounded center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="180">
-          <h2>Producto</h2>
-          <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-md-3 well">
-          <img class="img-rounded center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="180">
-          <h2>Producto</h2>
-          <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-md-3 well">
-          <img class="img-rounded center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="180">
-          <h2>Producto</h2>
-          <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div>
 
-      <div class="row">
-        <div class="col-md-3 well">
-          <img class="img-rounded center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="180">
-          <h2>Producto</h2>
-          <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-md-3 well">
-          <img class="img-rounded center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="180">
-          <h2>Producto</h2>
-          <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-md-3 well">
-          <img class="img-rounded center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="180">
-          <h2>Producto</h2>
-          <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-md-3 well">
-          <img class="img-rounded center-block" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="250" height="180">
-          <h2>Producto</h2>
-          <p><a class="btn btn-info" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+
+        <div class="col-md-9 well" style="background-color: white">
+
+        <c:forEach items="${productos }" var="producto">
+
+	        <div class="col-md-4 well">
+
+	          <img class="img-rounded center-block" src="${producto.imagen }" alt="Generic product" width="240" height="180">
+	          <h2>${producto.titulo }</h2>
+	          <p><a class="btn btn-info" href="/producto.jsp" role="button">View details &raquo;</a></p>
+	        </div><!-- /.col-lg-4 -->
+
+		    </c:forEach>
+
+      	</div>
+    
+    </div>
+    
     </div>
 
 
@@ -161,4 +150,3 @@
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
-
