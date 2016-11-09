@@ -54,8 +54,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="padding: 7px;"><img src="https://lh3.googleusercontent.com/eiHGogXLz3iBRZhKrdr7FOkw6q5P_iuGSwqGWmd1yRzMcc-B7V6xIKR9wzuqDrD61K4=w300" alt="Wallapop" height="38" width="38" ></a> 
-        <a class="navbar-brand" href="#">Wallapop TIW</a>
+          <a class="navbar-brand" style="padding: 7px;"><img src="https://lh3.googleusercontent.com/eiHGogXLz3iBRZhKrdr7FOkw6q5P_iuGSwqGWmd1yRzMcc-B7V6xIKR9wzuqDrD61K4=w300" alt="Wallapop" height="38" width="38" ></a> 
+        <a class="navbar-brand" href="/home.jsp">Wallapop TIW</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -74,69 +74,67 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron" style="padding: 15px">
 
-  <div class="row">
-    <div class="col-md-4">
-      <div class="container well well-lg" style="background-color: white">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="container well well-lg" style="background-color: white">
 
-        <form class="form-signin" action="usuario" method="post">
-          <h2 class="form-signin-heading text-center"><b>Regístrate</b></h2>
-          <h3 class="text-center">Es gratis y lo será siempre!</h3>
-          </br>
+            <form class="form-signin">
+              <h2 class="form-signin-heading text-center"><b>Regístrate</b></h2>
+              <h3 class="text-center">Es gratis y lo será siempre!</h3>
+              </br>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="inputNombre" class="sr-only">Nombre</label>
-                <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" name="nombre" required>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputNombre" class="sr-only">Nombre</label>
+                    <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                 <label for="inputApellidos" class="sr-only">Apellidos</label>
+                 <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" required>
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-             <label for="inputApellidos" class="sr-only">Apellidos</label>
-             <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" name="apellidos" required>
-            </div>
-          </div>
 
-          <div class="form-group">
-          <label for="inputEmail" class="sr-only">Email</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
-          </div>
+              <div class="form-group">
+              <label for="inputEmail" class="sr-only">Email</label>
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+              </div>
 
-          <div class="form-group">
-          <label for="inputPassword" class="sr-only">Contraseña</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="clave" required>
-          </div>
+              <div class="form-group">
+              <label for="inputPassword" class="sr-only">Contraseña</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+              </div>
 
-          <div class="form-group">
-          <label for="inputPassword2" class="sr-only">Repetir Contraseña</label>
-          <input type="password" id="inputPassword2" class="form-control" placeholder="Repetir Contraseña" name="clave2" required>
-          </div>
+              <div class="form-group">
+              <label for="inputPassword2" class="sr-only">Repetir Contraseña</label>
+              <input type="password" id="inputPassword2" class="form-control" placeholder="Repetir Contraseña" required>
+              </div>
 
-          <div class="form-group">
-          <label for="inputCiudad" class="sr-only">Ciudad</label>
-          <input type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" name="ciudad" required>
-          </div>
-          <div class="checkbox" style="text-align: auto !important">
-            <label>
-                <input type="checkbox" value="condiciones"> Acepto las <a href="#">Condiciones</a> y la <a href="#">Política de datos</a>, incluido el <a href="#">uso de cookies</a>
-            </label>
-          </div>
-          <input type="hidden" value="ALTA" name="accion" >
-          <button class="btn btn-lg btn-success btn-block" type="submit">Registrarse</button>
-		  
-        </form>
+              <div class="form-group">
+              <label for="inputCiudad" class="sr-only">Ciudad</label>
+              <input type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" required>
+              </div>
+              <div class="checkbox" style="text-align: auto !important">
+                <label>
+                    <input type="checkbox" value="condiciones"> Acepto las <a href="#">Condiciones</a> y la <a href="#">Política de datos</a>, incluido el <a href="#">uso de cookies</a>
+                </label>
+              </div>
+              <button class="btn btn-lg btn-success btn-block" type="submit">Registrarse</button>
+            
+            </form>
 
-      </div> <!-- /container -->
-
-    </div>
-    <div class="col-md-8">
-      <span><img class="img-responsive center-block"src="http://es.wallapop.com/images/banner.jpg" alt="Wallapop" ></span>
-    </div>
-  </div>
+          </div> <!-- /container -->
+        
+        </div>
+        <div class="col-md-8">
+          <span><img class="img-responsive center-block"src="http://es.wallapop.com/images/banner.jpg" alt="Wallapop" ></span>
+        </div>
+      </div>
 
 
     </div>
-   
-</html>
+
       <!-- Three columns of text below the carousel -->
       <div class="row" style="padding: 40px;">
 
