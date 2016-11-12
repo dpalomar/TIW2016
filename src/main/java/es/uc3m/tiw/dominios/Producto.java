@@ -10,32 +10,16 @@ import javax.persistence.*;
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
-@Table(name = "producto")
-public class Producto implements Serializable {
+@Table(name = "PRODUCTOS")
+public class Producto{
 	
-	public Producto(int id, String titulo, String categoria, String descripcion, String imagen,
-			String estado, String precio) {
-		super();
-		this.id = id;
-		this.titulo = titulo;
-		this.categoria = categoria;
-		this.descripcion = descripcion;
-		this.imagen = imagen;
-		this.estado = estado;
-		this.precio = precio;
-		}
-
-	private static final long serialVersionUID = 1L;
-
-
 	@Id
 	@GeneratedValue(strategy = AUTO)
 	private int id;
 
-	
 	@Column
 	protected String titulo;
-	@Column(nullable = false, length = 10, name = "clave")
+	@Column
 	protected String categoria;
 	@Column ( length = 45)
 	protected String descripcion;
@@ -46,12 +30,24 @@ public class Producto implements Serializable {
 	@Column
 	protected String estado = "Disponible"; /*Estado inicial al dar de alta producto*/
 	
-	@ManyToOne(cascade = ALL)
-	protected Usuario usuario;
-
+	//@ManyToOne(cascade = ALL)
+	//protected Usuario usuario;
+	
 	public Producto() {
 		
 	}
+
+	public Producto(int id, String titulo, String categoria, String descripcion,
+			String estado, String precio, String imagen) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.categoria = categoria;
+		this.descripcion = descripcion;
+		this.imagen = imagen;
+		this.estado = estado;
+		this.precio = precio;
+		}
 
 	public int getId() {
 		return id;
@@ -93,14 +89,6 @@ public class Producto implements Serializable {
 		this.imagen = imagen;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
 	public String getPrecio() {
 		return precio;
 	}
@@ -109,7 +97,14 @@ public class Producto implements Serializable {
 		this.precio = precio;
 	}
 
+	public String getEstado() {
+		return estado;
+	}
 
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 	
+		
 
 }

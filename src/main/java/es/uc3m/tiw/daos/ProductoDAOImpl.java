@@ -23,7 +23,6 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import es.uc3m.tiw.dominios.Producto;
-import es.uc3m.tiw.dominios.Producto;
 
 /**
  * @author David Palomar
@@ -37,7 +36,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 	public Collection<Producto> listarProductos() throws SQLException{
 		
 		
-		return em.createQuery("select p from Producto p", Producto.class).getResultList();
+		return em.createQuery("select productos from Producto productos", Producto.class).getResultList();
 	}
 	@Override
 	public Producto recuperarUnProductoPorClave(int pk) throws SQLException{

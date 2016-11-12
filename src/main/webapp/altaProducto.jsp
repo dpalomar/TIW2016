@@ -83,7 +83,7 @@
           
           <div class="form-group">
           <label for="titulo" class="sr-only">Titulo del Producto</label>
-          <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Título del Producto" required autofocus>
+          <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Título del Producto" >
           </div>
           
           <div class="form-group">
@@ -110,14 +110,22 @@
           </div>
           
           <div class="form-group">
+          <div class="row">
+          <div class=col-md-8>
+          
                 <label for="cantidad" class="sr-only">Precio</label>
                 <input type="number" name="precio" id="precio" class="form-control" placeholder="Precio" required>
+  		  </div>
+  		  <div class=col-md-4>
+                <span class="input-group-addon">EUR</span>
+          </div>
+          </div>
           </div>
           
-          <div class="form-group">
+          <!--<div class="form-group">
           <label for="imagen">Imagen del Producto</label>
-          <input accept=".jpg, image/*" name ="imagen" id="imagen" type="file"/>
-          </div>
+          <input accept=".jpg, image/*" name ="imagen" id="imagen" type="text"/>
+          </div>-->
 
           <div class="checkbox" style="text-align: auto !important">
             <label>

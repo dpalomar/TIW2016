@@ -100,6 +100,7 @@ public class ProductoServlet extends HttpServlet {
 								if (accion.equalsIgnoreCase(ALTA)) {
 									pagina = "/altaProducto.jsp";
 									
+									
 								}else if (accion.equalsIgnoreCase(EDITAR)) {
 									Producto producto = recuperarDatosProducto(request);
 									request.setAttribute("producto", producto);
@@ -181,6 +182,8 @@ public class ProductoServlet extends HttpServlet {
 			producto.setEstado(request.getParameter("estado"));
 			producto.setPrecio(request.getParameter("precio"));
 		
+			request.setAttribute("producto", producto);
+		
 			altaProducto(producto);
 			
 			/*una vez dado de alta añadir el producto a la List*/
@@ -200,7 +203,8 @@ public class ProductoServlet extends HttpServlet {
 					producto.setEstado(request.getParameter("estado"));
 					producto.setPrecio(request.getParameter("precio"));
 					
-					sesion.setAttribute("producto", producto);
+					
+					request.setAttribute("producto", producto);
 					//hacemos el update en la bbdd
 					modificarProducto(producto);
 					

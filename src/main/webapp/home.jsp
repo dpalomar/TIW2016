@@ -1,4 +1,7 @@
 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,6 +31,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   <style type="text/css">
+  
     
     body {
   padding-top: 50px;
@@ -59,12 +63,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-              <li class="active"><a href="/home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li><a href="/misProductos.jsp"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
-              <li><a href="/Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
+              <li class="active"><a href="home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a href="misProductos.jsp"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
+              <li><a href="Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              <!--  <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
+   			   <li>
+                        <form class="glyphicon glyphicon-log-out" action="usuario" method="post">   
+                                <input type="submit" name="log out" value="Log Out"/>
+                                <input type = "hidden" name = "accion" value = "SALIR">   
+                        </form>
+               </li>
             </ul> 
         </div><!--/.navbar-collapse -->
       </div>
@@ -85,7 +95,7 @@
 
         <div class="col-md-3 well">
           <div class="well"  style="background-color: white">
-          <h4>Búsqueda Simple</h4>
+          <h4>BÃºsqueda Simple</h4>
             <div class="form-group input-group">
               <input type="text" class="form-control" placeholder="Buscar..">
               <span class="input-group-btn">
@@ -96,7 +106,7 @@
             </div>
           </div>
           <div class="well"  style="background-color: white">
-          <h4>Búsqueda Avanzada</h4>
+          <h4>B&uacute;squeda Avanzada</h4>
             <div class="form-group input-group">
               <input type="text" class="form-control" placeholder="Buscar..">
               <span class="input-group-btn">
@@ -110,18 +120,24 @@
 
 
         <div class="col-md-9 well" style="background-color: white">
+        <h2>Bienvenido ${sessionScope.usuario.nombre}</h2>
+        
 
+
+		
         <c:forEach items="${productos }" var="producto">
+      
 
 	        <div class="col-md-4 well">
-
-	          <img class="img-rounded center-block" src="${producto.imagen }" alt="Generic product" width="240" height="180">
-	          <h2>${producto.titulo }</h2>
-	          <p><a class="btn btn-info" href="/producto.jsp" role="button">View details &raquo;</a></p>
+				
+	         <!--   <img src="${usuario.apellidos }" alt="Generic product" width="240" height="180">  -->
+	          <h2>${producto.titulo}</h2>
+	          <p><a class="btn btn-info" href="producto.jsp" role="button">View details &raquo;</a></p>
 	        </div><!-- /.col-lg-4 -->
+	      
+	     </c:forEach>
 
-		    </c:forEach>
-
+	
       	</div>
     
     </div>

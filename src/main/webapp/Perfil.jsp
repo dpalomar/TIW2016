@@ -64,9 +64,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-              <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
-              <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
+              <li><a href="home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a href="misProductos.jsp"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
+              <li class="active"><a href="Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

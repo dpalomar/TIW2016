@@ -103,14 +103,10 @@
 				value="${producto.categoria }"  ><br>
             <label for="descripcion">Descripcion:</label> <input type="text" name="descripcion"
 				value="${producto.descripcion }"  ><br>
-			 <label for="imagen">Imagen:</label> <input type="text" name="imagen"
-				value="${producto.imagen }"><br>
-			<label for="estado">Estado:</label> <input
-				type="text" name="estado" value="${producto.estado}"><br>
-			<label for="precio">Cantidad:</label> <input
-				type="text" name="precio" value="${producto.precio.cantidad }"><br>
-				<label for="precio">Divisa:</label> <input
-				type="text" name="precio" value="${producto.precio.divisa }"><br>
+			 <!--<label for="imagen">Imagen:</label> <input type="text" name="imagen"-->
+				<!-- value="${producto.imagen }"><br>-->
+			<label for="estado">Estado:</label> <input type="text" name="estado" value="${producto.estado}"><br>
+			<label for="precio">Precio:</label> <input type="text" name="precio" value="${producto.precio }"><br>
 			<input type="hidden" value="EDITAR" name="accion">
 		</fieldset>
 		<input type="submit" value="Modificar">

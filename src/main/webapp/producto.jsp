@@ -90,14 +90,15 @@
       
       <div class="row"> 
         <div class="col-md-8">
-          <img class="img-rounded center-block img-responsive" src="${producto.imagen }" alt="Generic product image" width="750" height="600">
+          <img class="img-rounded center-block img-responsive" src="${producto.imagen }alt="Generic product image" width="750" height="600">
         </div>  
+    
 
         <div class="col-md-4 ">
 
           <div class="row" >
             <div class="well">
-              <h2 style="color: #23C5B2">Precio: ${producto.precio.cantidad }</h2>
+              <h2 style="color: #23C5B2">Precio: ${producto.precio}</h2>
               <h3> Título: ${producto.titulo } </h3>
               <p> Descripción: ${producto.descripcion }</p>
               <p><b><i>Categoría: ${producto.categoria }i></b></p>

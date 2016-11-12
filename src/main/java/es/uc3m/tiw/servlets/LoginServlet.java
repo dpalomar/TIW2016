@@ -1,6 +1,7 @@
 package es.uc3m.tiw.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -62,13 +63,15 @@ public class LoginServlet extends HttpServlet {
 				public void init(ServletConfig config) throws ServletException {
 					this.config = config;
 					
+					pdao = new ProductoDAOImpl(); 
+					pdao.setConexion(em);
+					pdao.setTransaction(ut);
+					
 					dao = new UsuarioDAOImpl(); 
 					dao.setConexion(em);
 					dao.setTransaction(ut);
 					
-					pdao = new ProductoDAOImpl(); 
-					pdao.setConexion(em);
-					pdao.setTransaction(ut);
+					
 			
 		}
 	       
@@ -79,6 +82,7 @@ public class LoginServlet extends HttpServlet {
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			config.getServletContext().getRequestDispatcher(LOGIN_JSP).forward(request, response);
+			
 		}
 
 		/**
@@ -91,7 +95,18 @@ public class LoginServlet extends HttpServlet {
 			String mensaje ="";
 			String pagina = "";
 			pagina = LOGIN_JSP;
+			usuarios = new ArrayList<Usuario>();
+			productos = new ArrayList<Producto>();
+			
 			HttpSession sesion = request.getSession();
+			
+			try {
+				productos = (List<Producto>) pdao.listarProductos(); 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 			try {
 				usuarios = (List<Usuario>) dao.listarUsuarios();
@@ -100,21 +115,19 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			try {
-				productos = (List<Producto>) pdao.listarProductos();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
 			Usuario u = comprobarUsuario(email, password);
+	
 			if (u != null){
 				
 				
 				pagina = HOME_JSP;
 				request.setAttribute("productos", productos);
+				request.setAttribute("usuarios", usuarios);
 				sesion.setAttribute("usuario", u);
 				sesion.setAttribute("autenticado", true);
+				
+				
 				
 			}else{
 				
@@ -126,6 +139,8 @@ public class LoginServlet extends HttpServlet {
 				
 			
 		}
+
+
 
 		private Usuario comprobarUsuario(String email, String password) {
 			Usuario u = null;
