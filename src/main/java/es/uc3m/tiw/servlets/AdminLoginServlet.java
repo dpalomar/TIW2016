@@ -27,6 +27,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import es.uc3m.tiw.dominios.Administrador;
 import es.uc3m.tiw.dominios.Producto;
 import es.uc3m.tiw.dominios.Usuario;
 //import es.uc3m.tiw.Conector;
@@ -34,24 +35,27 @@ import es.uc3m.tiw.daos.UsuarioDAO;
 import es.uc3m.tiw.daos.UsuarioDAOImpl;
 import es.uc3m.tiw.daos.ProductoDAO;
 import es.uc3m.tiw.daos.ProductoDAOImpl;
+import es.uc3m.tiw.daos.AdministradorDAO;
+import es.uc3m.tiw.daos.AdministradorDAOImpl;
 
 	/**
 	 * 
 	 * 
 	 * @author Grupo 3 - TIW 2016
 	 */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/loginAdmin")
+public class AdminLoginServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final String LOGIN_JSP = "/login.jsp";
+	private static final String LOGIN_JSP = "/ADMlogin.jsp";
 	private static final String ERROR_JSP = "/error.jsp";
-	private static final String HOME_JSP = "/home.jsp";
+	private static final String HOME_JSP = "/ADMproductos.jsp";
 	private static final long serialVersionUID = 1L;
 	private ServletConfig config;
 	private List<Usuario> usuarios;
 	private List<Producto> productos;
+	private AdministradorDAO adao;
 	private UsuarioDAO dao;
 	private ProductoDAO pdao; 
 	@PersistenceContext(unitName="WallapopTIW")
@@ -71,6 +75,9 @@ public class LoginServlet extends HttpServlet {
 					dao.setConexion(em);
 					dao.setTransaction(ut);
 					
+					adao = new AdministradorDAOImpl(); 
+					adao.setConexion(em);
+					adao.setTransaction(ut);
 					
 			
 		}
@@ -95,7 +102,6 @@ public class LoginServlet extends HttpServlet {
 			String mensaje ="";
 			String pagina = "";
 			pagina = LOGIN_JSP;
-			usuarios = new ArrayList<Usuario>();
 			productos = new ArrayList<Producto>();
 			
 			HttpSession sesion = request.getSession();
@@ -115,23 +121,25 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			Administrador adm = new Administrador();
+			adm.setEmail(email);
+			adm.setPassword(password);
 			
-			Usuario u = comprobarUsuario(email, password);
 	
-			if (u != null){
+			if (email.equals(adm.getEmail()) && password.equals(adm.getPassword())){
 				
 				
 				pagina = HOME_JSP;
 				sesion.setAttribute("productos", productos);
-				//request.setAttribute("usuarios", usuarios);
-				sesion.setAttribute("usuario", u);
+				sesion.setAttribute("usuarios", usuarios);
+				sesion.setAttribute("admin", adm);
 				sesion.setAttribute("autenticado", true);
 				
 				
 				
 			}else{
 				
-				mensaje = "Usuario o password incorrectos";
+				mensaje = "Email o password incorrectos";
 				request.setAttribute("mensaje", mensaje);
 			}
 			
@@ -140,17 +148,5 @@ public class LoginServlet extends HttpServlet {
 			
 		}
 
-
-
-		private Usuario comprobarUsuario(String email, String password) {
-			Usuario u = null;
-			for (Usuario usuario : usuarios) {
-				if (email.equals(usuario.getEmail()) && password.equals(usuario.getPassword())){
-					u = usuario;
-					//break;
-				}
-			}
-			return u;
-		}
 
 }

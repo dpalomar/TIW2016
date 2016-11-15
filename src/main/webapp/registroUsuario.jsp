@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
+    
+    
 
     <title>Wallapop - Registro</title>
 
@@ -26,8 +28,15 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>
+	<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
     <![endif]-->
   <style type="text/css">
+  
+  
     
     body {
   padding-top: 50px;
@@ -58,7 +67,7 @@
         <a class="navbar-brand" href="/home.jsp">Wallapop TIW</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
+          <form id="registro" action="login" method="post" class="navbar-form navbar-right"  >
             <div class="form-group">
               <input type="text" placeholder="Email" class="form-control">
             </div>
@@ -87,18 +96,18 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="inputNombre" class="sr-only">Nombre</label>
-                    <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" name="nombre" required>
+                    <input data-validation="required" data-validation="length" data-validation-length="max15" type="text" id="inputNombre" class="form-control" placeholder="Nombre" name="nombre" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                  <label for="inputApellidos" class="sr-only">Apellidos</label>
-                 <input type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" name="apellidos" required>
+                 <input data-validation="required" data-validation="length" data-validation-length="max20" type="text" id="inputApellidos" class="form-control" placeholder="Apellidos" name="apellidos" required>
                 </div>
               </div>
 
               <div class="form-group">
               <label for="inputEmail" class="sr-only">Email</label>
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
+              <input data-validation="email" type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
               </div>
 
               <div class="form-group">
@@ -113,7 +122,7 @@
 
               <div class="form-group">
               <label for="inputCiudad" class="sr-only">Ciudad</label>
-              <input type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" name="ciudad" required>
+              <input data-validation="required" data-validation="length" data-validation-length="max10" type="text" id="inputCiudad" class="form-control" placeholder="Ciudad" name="ciudad" required>
               </div>
               <div class="checkbox" style="text-align: auto !important">
                 <label>
@@ -147,6 +156,17 @@
         <p>&copy; 2016 Company, Inc. ---- Designed by "El Asilo"</p>
       </footer>
     </div> <!-- /container -->
+    
+    <script>
+	$.validate({
+	form : '#registro',
+	modules : 'security',
+	onError : function($form) {
+	console.log($form);
+	return false;
+	}
+	});
+	</script>
 
 
     <!-- Bootstrap core JavaScript

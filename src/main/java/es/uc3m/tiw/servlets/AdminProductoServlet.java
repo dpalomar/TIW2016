@@ -43,9 +43,9 @@ import es.uc3m.tiw.dominios.Producto;
 /**
  * Servlet implementation class ProductoServlet
  */
-@WebServlet("/producto")
+@WebServlet("/AdminProducto")
 @MultipartConfig(location = "./../../../eclipseApps/WallapopTIW/imagenes")
-public class ProductoServlet extends HttpServlet {
+public class AdminProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ServletConfig config;
 	private UsuarioDAO dao;
@@ -60,7 +60,7 @@ public class ProductoServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductoServlet() {
+    public AdminProductoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -108,22 +108,19 @@ public class ProductoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
 		HttpSession sesion = request.getSession();
-		String pagina = "/producto.jsp";
+		String pagina = "/misProductos.jsp";
 		Producto producto = new Producto();
 		
 		//Usuario usuario = (Usuario) sesion.getAttribute("usuario");
 		
 		String productoid= request.getParameter("id");
+		int id_usuario = Integer.parseInt("productoid");
 		
-		Usuario user = (Usuario) sesion.getAttribute("usuario");
-		int id_user = user.getId();
 		
-	
 		
 	
 		
 					if (accion.equalsIgnoreCase(ALTA)) {
-						
 						
 						producto.setTitulo(request.getParameter("titulo"));
 						producto.setCategoria(request.getParameter("categoria"));
@@ -133,11 +130,53 @@ public class ProductoServlet extends HttpServlet {
 						producto.setPrecio(request.getParameter("precio"));
 						//Cuando se crea un producto debe constar automáticamente como Disponible
 						producto.setEstado("Disponible");
-						producto.setUsuario(id_user);
+						
+						
+						try {
+							Usuario user = dao.recuperarUnUsuarioPorClave(id_usuario);
+							//producto.setUsuario(user);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						
+						
+						// Almacenamos en la base de datos el propietario del producto
+						//Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+						//producto.setUsuario(usuario.getId());
+						
+						//Recuperar una imagen y guardarla en el servidor
+						
+						/* cogemos la imagen de la "parte" de la cabecera que la contiene, para ello en el input del formulario
+						* teemos que tener una entrada de tipo file y con el nombre que queramos recuperar, en nuestro caso "imagen"
+						*/
+						/*Part filePart = request.getPart("imagen");
+						/*
+						* recuperamos el nombre del fichero para poder guardarlo con el mismo nombre en el servidor
+						*/
+						//String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+						/*
+						* Utilizamos el nombre del fichero para guardarlo en la base de datos
+						* IMPORTANTE: estamos guardando el nombre del fichero, no la URL completa
+						*/
+						//String nombreImagen = usuario.getId() + fileName;
+					//	producto.setImagen(nombreImagen);
+						/*
+						* Creamos un fichero con el nombre del fichero, incluyendo la extension (png,jpg...)
+						*/
+						//File imagen = new File("./../eclipseApps/WallapopTIW/imagenes/"+nombreImagen);
+						/*
+						* Utilizamos el contenido de la "parte" recuperada para "llenar" el fichero que acabamos de crear
+						*/
+						/*InputStream fileContent = filePart.getInputStream();
+						byte[] buffer = new byte[fileContent.available()];
+						fileContent.read(buffer);
+						OutputStream outStream = new FileOutputStream(imagen);
+						outStream.write(buffer);
+						outStream.close();*/
 					
 						request.setAttribute("producto", producto);
-						
-						pagina ="/misProductos.jsp";
 					
 						// Lo creamos en la base de datos
 						altaProducto(producto);
@@ -187,7 +226,7 @@ public class ProductoServlet extends HttpServlet {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						pagina = "/Perfil";
+						pagina = "/login.jsp";
 						borrarProducto(producto);
 					}
 					
@@ -201,8 +240,7 @@ public class ProductoServlet extends HttpServlet {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
-						pagina = "/Perfil";
+						pagina="/producto.jsp";
 						sesion.setAttribute("producto", producto);
 		
 			
@@ -223,7 +261,6 @@ public class ProductoServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
 					
 					
 					request.setAttribute("productos", productos);

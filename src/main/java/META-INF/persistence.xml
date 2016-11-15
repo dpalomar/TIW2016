@@ -5,6 +5,7 @@
 		<jta-data-source>jdbc/tiw</jta-data-source>
 		<class>es.uc3m.tiw.dominios.Usuario</class>
 		<class>es.uc3m.tiw.dominios.Producto</class>
+		<class>es.uc3m.tiw.dominios.Administrador</class>
 		<properties>
 			<property name="eclipselink.logging.level" value="FINE"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>

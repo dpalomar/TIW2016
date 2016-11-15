@@ -75,15 +75,16 @@
   <div class="row">
     <div class="col-md-4">
       <div class="container well well-lg" style="background-color: white">
+      
 
         <form action="producto" class="form-signin" method="post">
           <h2 class="form-signin-heading text-center"><b>Da de alta un producto</b></h2>
-          <h3 class="text-center">Verás que fácil es vender!</h3>
+          <h3 class="text-center">Ver&aacute;s que f&aacute;cil es vender!</h3>
           </br>
           
           <div class="form-group">
-          <label for="titulo" class="sr-only">Titulo del Producto</label>
-          <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Título del Producto" >
+          <label for="titulo" class="sr-only">T&iacute;tulo del Producto</label>
+          <input type="text" name="titulo" id="titulo" class="form-control" placeholder="T&iacute;tulo del Producto" >
           </div>
           
           <div class="form-group">
@@ -106,7 +107,7 @@
 
           <div class="form-group">
           <label for="descripcion" class="sr-only">Descripcion</label>
-          <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripción" maxlength="500" required>
+          <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripci&oacute;n" maxlength="500" required>
           </div>
           
           <div class="form-group">
@@ -122,10 +123,10 @@
           </div>
           </div>
           
-          <!--<div class="form-group">
+         <!--   <div class="form-group">
           <label for="imagen">Imagen del Producto</label>
-          <input accept=".jpg, image/*" name ="imagen" id="imagen" type="text"/>
-          </div>-->
+          <input name ="imagen" id="imagen" type="file" multiple />
+          </div> -->
 
           <div class="checkbox" style="text-align: auto !important">
             <label>
@@ -133,7 +134,7 @@
             </label>
           </div>
           <input type="hidden" value="ALTA" name="accion">
-          <button class="btn btn-lg btn-success btn-block" type="submit">Añadir Producto</button>
+          <button class="btn btn-lg btn-success btn-block" type="submit">A&ntilde;adir Producto</button>
 
         </form>
 

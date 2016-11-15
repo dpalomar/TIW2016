@@ -56,12 +56,12 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form action="login" method="post" class="navbar-form navbar-right">
             <div class="form-group">
-              <input type="email" placeholder="Email" class="form-control" name="email">
+              <input type="email" placeholder="Email" id ="email" class="form-control" name="email">
             </div>
             <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" name="clave">
+              <input type="password" placeholder="Password" id ="password" class="form-control" name="clave">
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button onclick="valida_login()" type="submit" class="btn btn-primary">Login</button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -107,6 +107,91 @@
         <p>&copy; 2016 Company, Inc. ---- Designed by "El Asilo"</p>
       </footer>
     </div> <!-- /container -->
+    
+    <script type="text/javascript">
+        function valida_envia(){
+                valor = document.getElementById("nombrev").value;
+                valor1 = document.getElementById("papellidov").value;
+                valor2 = document.getElementById("sapellidov").value;
+                valor3 = document.getElementById("direccionv").value;
+                valor4 = document.getElementById("telefonov").value;
+                valor5 = document.getElementById("emailv").value;
+                valor6 = document.getElementById("passwordv").value;
+                valor7 = document.getElementById("cpasswordv").value;
+                if( valor == null){
+                    document.fvalida.nombre_Usuario.focus();
+                }else if(/^([0-9])*$/.test(valor)){
+                    document.fvalida.nombre_Usuario.focus();
+                    alert("Por favor, escriba su nombre correctamente");
+                    return 0;
+                }
+                if( valor1 == null){
+                    document.fvalida.apellido1.focus();
+                }else if(/^([0-9])*$/.test(valor1)){
+                    document.fvalida.apellido1.focus();
+                    alert("Por favor, escriba su primer apellido correctamente");
+                    return 0;
+                }
+                if( valor2 == null){
+                    document.fvalida.apellido2.focus();
+                }else if(/^([0-9])*$/.test(valor2)){
+                    document.fvalida.apellido2.focus();
+                    alert("Por favor, escriba su segundo apellido correctamente");
+                    return 0;
+                }
+                if( valor3.length == 0){
+                    document.fvalida.direccion.focus();
+                    alert("Por favor, escriba su dirección");
+                    return 0;
+                }
+                if( valor4 == null){
+                    document.fvalida.telefono.focus();
+                }else if( !(/^\d{9}$/.test(valor4)) ) {
+                    document.fvalida.telefono.focus();
+                    alert("Por favor, escriba su teléfono correctamente");
+                    return 0;
+                }
+                if( valor5 == null){
+                    document.fvalida.email.focus();
+                }else if( !(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(valor5)) ) {
+                    document.fvalida.email.focus();
+                    alert("Por favor, escriba su email correctamente");
+                    return 0;
+                }
+                if (valor6.length == 0) {
+                    document.fvalida.password.focus();
+                    alert("Por favor, rellene el campo de contraseña");
+                    return 0;
+                }
+                if (valor7.length == 0) {
+                    document.fvalida.password2.focus();
+                    alert("Por favor, rellene el campo de confirmación de contraseña");
+                    return 0;
+                }
+                if (valor6 != valor7) {
+                     alert("Las contraseñas deben coincidir");
+                     return 0;
+                }
+        }   
+    </script>
+<script type="text/javascript">
+        function valida_login(){
+                    valor8 = document.getElementById("email").value;
+                    valor9 = document.getElementById("password").value;
+                    if( valor8 == null){
+                        document.fvalid.email.focus();
+                    }else if( !(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(valor8)) ) {
+                        document.fvalida2.email.focus();
+                        alert("Por favor, escriba su email correctamente");
+                        return 0;
+                    }
+                    if (valor9.length == 0) {
+                        document.fvalida2.password.focus();
+                        alert("Por favor, rellene el campo de contraseña");
+                        return 0;
+                    }                         
+            }
+</script>
 
 
     <!-- Bootstrap core JavaScript

@@ -95,7 +95,7 @@
  
 		<form action="usuario" method="post">
 		<fieldset>
-			<legend>Formulario de Edici&oacute;n de Usuarios</legend>
+			<legend>Formulario de Edici&oacute;n de Productos</legend>
 
 			<label for="titulo">Titulo:</label> <input type="text" name="titulo"
 				value="${producto.titulo }"><br> 
@@ -112,7 +112,7 @@
 		<input type="submit" value="Modificar">
 
 	</form>
-	<a href="ProductoServlet?id=${producto.id }&accion=EDITAR }">Borrar</a>
+	<a href="ProductoServlet?id=${producto.id }&accion=BORRAR }">Borrar</a>
  
  
 	

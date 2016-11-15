@@ -65,11 +65,11 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
               <li><a href="home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li><a href="misProductos.jsp"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
+              <li><a href="MisProductos"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
               <li class="active"><a href="Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              <li><a href="usuario?id=${usuario.id }&accion=SALIR"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul> 
         </div><!--/.navbar-collapse -->
       </div>
@@ -79,7 +79,7 @@
 
       <ol class="breadcrumb" style="background-color: #23C5B2; color: white">
         <li><a href="#" style="color: black"><b>Home</b></a></li>
-        <li style="color: white" ><b><i>Mi Perfil</i></b></li>
+        <li><a href="Perfil.jsp" style="color: white" ><b><i>Mi Perfil</i></b></a></li>
       </ol>
 
     </nav>
@@ -93,13 +93,13 @@
                                 
 	<form action="usuario" method="post">
 		<fieldset>
-			<legend>Formulario de Edición de Usuarios</legend>
+			<legend>Formulario de EdiciÃ³n de Usuarios</legend>
 
 			<label for="nom">Nombre:</label> <input type="text" name="nombre"
 				id="nom" value="${usuario.nombre }"><br> 
 			<label for="apellidos">Apellidos:</label> <input type="text" name="apellidos"
 				id="apellidos" value="${usuario.apellidos }"  ><br>
-            <label for="email">Nick:</label> <input type="text" name="email"
+            <label for="email">Email:</label> <input type="text" name="email"
 				id="email" value="${usuario.email }"  ><br>
 			 <label for="ciudad">Ciudad:</label> <input type="text" name="ciudad"
 				id="ciudad" value="${usuario.ciudad }"  ><br>

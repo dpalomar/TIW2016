@@ -39,4 +39,8 @@ public interface ProductoDAO {
 
 	void setTransaction(UserTransaction ut);
 
+	Collection<Producto> buscarPorUsuario(int usuario)
+			throws SQLException, NotSupportedException, SystemException, SecurityException, IllegalStateException,
+			RollbackException, HeuristicMixedException, HeuristicRollbackException;
+
 }

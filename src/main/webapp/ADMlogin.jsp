@@ -1,7 +1,3 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Wallapop - Registro</title>
+    <title>Administracion - Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,10 +27,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   <style type="text/css">
-  
     
     body {
   padding-top: 50px;
+  padding-bottom: 20px;
 }
   </style>
 
@@ -44,10 +40,6 @@
   </head>
 
   <body>
-
-
-
-
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -59,96 +51,59 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" style="padding: 7px;"><img src="https://lh3.googleusercontent.com/eiHGogXLz3iBRZhKrdr7FOkw6q5P_iuGSwqGWmd1yRzMcc-B7V6xIKR9wzuqDrD61K4=w300" alt="Wallapop" height="38" width="38" ></a> 
-        <a class="navbar-brand" href="MisProductos">Wallapop TIW</a>
+        <a class="navbar-brand" href="ADMlogin.jsp">Administracion TIW</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-left">
-              <li class="active"><a href="home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li><a href="MisProductos"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
-              <li><a href="Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
-            </ul>
-           <ul class="nav navbar-nav navbar-right">
-              <li><a href="usuario?id=${usuario.id }&accion=SALIR }"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul> 
+          <form action="loginAdmin" method="post" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" name="clave">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
-
-    <nav class="navbar">
-
-      <ol class="breadcrumb" style="background-color: #23C5B2; color: white">
-        <li><a href="home.jsp" style="color: white"><b>Home</b></a></li>
-      </ol>
-
-    </nav>
-
-
-    <div class="container text-center" style="padding: 15px">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
       <div class="row">
-
-        <div class="col-md-3 well">
+      <div class="container" style="text-align: center;">
+        <h1 >Administracion de la aplicacion Wallapop</h1>
+        <p>Como administrador, podras gestionar los usuarios de la aplicacion y los productos existentes. Debe iniciar sesion para poder controlar dichas funcionalidades.</p>
         
-          <div class="well"  style="background-color: white">
-          <h4>Búsqueda Simple</h4>
-            <form class="form-group input-group" role="search" action="busqueda" method="post">
-              <input type="text" class="form-control" placeholder="Buscar.." name="busqueda">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </span>
-            </form>
-          </div>
-          <div class="well"  style="background-color: white">
-          <h4>B&uacute;squeda Avanzada</h4>
-            <div class="form-group input-group">
-              <input type="text" class="form-control" placeholder="Buscar..">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </span>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-md-9 well" style="background-color: white">
-        <h2>Bienvenido ${sessionScope.usuario.nombre}</h2>
-        
-
-
-
-
-		
-        <c:forEach items="${productos }" var="producto">
-      
-
-	        <div class="col-md-4 well">
-				
-	         <!--   <img src="${usuario.apellidos }" alt="Generic product" width="240" height="180">  -->
-	          <h2>${producto.titulo}</h2>
-	          <p><a class="btn btn-info" href="producto?id={producto.id }&accion=VER" role="button">View details &raquo;</a></p>
-	        </div><!-- /.col-lg-4 -->
-	      
-	     </c:forEach>
-
-	
-      	</div>
-    
+      </div>
+      </div>
     </div>
-    
-    </div>
-
 
       <!-- Three columns of text below the carousel -->
+      <div class="row" style="padding: 40px;">
+        <div class="col-lg-4">
+          <img class="img-circle center-block" src="http://www.omicrono.com/wp-content/uploads/2015/12/android-logo.jpg" alt="Android image" width="160" height="160">
+          <h2>Version Android</h2>
+          <h5>Wallapop es un mercadillo (Flea market) virtual y movil en forma de app GRATIS para Android (4.0+) que te permite comprar y vender productos de segunda mano. WALLA! </h5>
+ 
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle center-block" src="http://cdn.thetechhacker.com/wp-content/uploads/2015/01/Apple-iOS-advantages.png" alt="iOS image" width="160" height="160">
+          <h2>Version iOS</h2>
+          <h5>La app gratis para iPhone y iPad que te permite comprar y vender productos de segunda mano cerca tuyo. Para instalar Wallapop para iOs (iPhone, iPad y iPod touch), debes disponer de un movil o Tablet iOS 8.0 o superior.</h5>
 
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle center-block" src="http://www.universitypawn.net/wp-content/uploads/2013/09/best-laptop-under-400.jpg" alt="Desktop image" width="160" height="160">
+          <h2>Version PC</h2>
+          <h5>Si estas buscando como instalar Wallapop para PC has llegado al sitio adecuado. </h5>
+
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
 
       <footer style="background-color: #555;
       color: white;
       padding: 15px;">
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>&copy; 2016 Company, Inc. ---- Designed by "El Asilo"</p>
       </footer>
     </div> <!-- /container -->
 

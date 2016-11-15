@@ -77,63 +77,8 @@ public class UsuarioServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*Comprobar en todo momento que el ususario que accede tiene la sesion abierta*/
-		HttpSession sesion = request.getSession();
-    		if((sesion.getAttribute("autenticado").toString()).equalsIgnoreCase("false")){
-				
-				this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);	
-			}else{
-		
-				String accion = request.getParameter("accion");
-
-					String pagina = null;
-				
-					try {
-						try {
-							try {
-								if (accion.equalsIgnoreCase(ALTA)) {
-									pagina = "/registroUsuario.jsp";
-									
-								}else if (accion.equalsIgnoreCase(EDITAR)) {
-									Usuario usuario = recuperarDatosUsuario(request);
-									request.setAttribute("usuario", usuario);
-									pagina = "/Perfil.jsp";
-									
-								}else if (accion.equalsIgnoreCase(BORRAR)) {
-									Usuario usuario = recuperarDatosUsuario(request);
-									pagina = "/login.jsp";
-									borrarUsuario(usuario);
-								}
-							} catch (SecurityException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (IllegalStateException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (RollbackException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (HeuristicMixedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (HeuristicRollbackException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						} catch (NotSupportedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (SystemException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					config.getServletContext().getRequestDispatcher(pagina).forward(request, response);
-			
-			}
+		// Las peticiones Get serán tratadas de la misma manera que las peticiones Post.
+		doPost(request, response);
 	}
 
 	/**
@@ -164,50 +109,50 @@ public class UsuarioServlet extends HttpServlet {
 		String accion = request.getParameter("accion");
 		HttpSession sesion = request.getSession();
 		String pagina = "/login.jsp";
+		Usuario usuario = new Usuario();
 		
-		if (accion.equalsIgnoreCase(ALTA)) {
-			Usuario usuario = new Usuario();
-			
-			usuario.setEmail(request.getParameter("email"));
-			usuario.setPassword(request.getParameter("clave"));
-			usuario.setNombre(request.getParameter("nombre"));
-			usuario.setApellidos(request.getParameter("apellidos"));
-			usuario.setCiudad(request.getParameter("ciudad"));
-		
-			altaUsuario(usuario);
-			
-			/*una vez dado de alta aÃ±adir el ususario a la List*/
-			/* listaUsuarios.add(usuario) */
-			
-		}else if (accion.equalsIgnoreCase(EDITAR)) {
-			Usuario usuario;
+		try {
 			try {
 				try {
-					//recuperamos el usuario de la bbdd
-					usuario = recuperarDatosUsuario(request);
-					// actualizamos los valores del usuario con los del formulario
-					usuario.setApellidos(request.getParameter("apellidos"));
-					usuario.setNombre(request.getParameter("nombre"));
-					usuario.setPassword(request.getParameter("password"));
-					usuario.setEmail(request.getParameter("email"));
-					usuario.setCiudad(request.getParameter("ciudad"));
+					if (accion.equalsIgnoreCase(ALTA)) {
+						
+						
+						usuario.setEmail(request.getParameter("email"));
+						usuario.setPassword(request.getParameter("clave"));
+						usuario.setNombre(request.getParameter("nombre"));
+						usuario.setApellidos(request.getParameter("apellidos"));
+						usuario.setCiudad(request.getParameter("ciudad"));
 					
-					sesion.setAttribute("usuario", usuario);
-					//hacemos el update en la bbdd
-					modificarUsuario(usuario);
+						altaUsuario(usuario);
+						
+					}else if (accion.equalsIgnoreCase(EDITAR)) {
+				
+								//recuperamos el usuario de la bbdd
+								usuario = recuperarDatosUsuario(request);
+								// actualizamos los valores del usuario con los del formulario
+								usuario.setApellidos(request.getParameter("apellidos"));
+								usuario.setNombre(request.getParameter("nombre"));
+								usuario.setPassword(request.getParameter("password"));
+								usuario.setEmail(request.getParameter("email"));
+								usuario.setCiudad(request.getParameter("ciudad"));
+								
+								sesion.setAttribute("usuario", usuario);
+								//hacemos el update en la bbdd
+								modificarUsuario(usuario);
+								
+								pagina="/Perfil.jsp";
+								
 					
-					pagina="/Perfil.jsp";
-					
+						
+					}else if (accion.equalsIgnoreCase(BORRAR)) {
+						usuario = recuperarDatosUsuario(request);
+						pagina = "/login.jsp";
+						borrarUsuario(usuario);
+					}
 				} catch (SecurityException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NotSupportedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SystemException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (RollbackException e) {
@@ -220,17 +165,23 @@ public class UsuarioServlet extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-			} catch (SQLException e) {
+			} catch (NotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SystemException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		 }
-		
-		
-		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
 		config.getServletContext().getRequestDispatcher(pagina).forward(request, response);
 	}
+		
+		
+		
 	/**
 	 * Modifica los datos del usuario con el UsuarioDao
 	 * @param usuario

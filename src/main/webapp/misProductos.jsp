@@ -1,4 +1,7 @@
 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,11 +63,11 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
               <li><a href="home.jsp"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li class="active"><a href="misProductos.jsp"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
+              <li class="active"><a href="MisProductos"><span class="glyphicon glyphicon-list-alt"></span> Mis productos</a></li>
               <li><a href="Perfil.jsp"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              <li><a href="usuario?id=${usuario.id }&accion=SALIR }"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul> 
         </div><!--/.navbar-collapse -->
       </div>
@@ -74,8 +77,8 @@
     <nav class="navbar">
 
       <ol class="breadcrumb" style="background-color: #23C5B2; color: white">
-        <li><a href="#" style="color: black"><b>Home</b></a></li>
-        <li style="color: white" ><b><i>Mis Productos</i></b></li>
+        <li><a href="home.jsp" style="color: black"><b>Home</b></a></li>
+        <li><a href="misProductos.jsp" style="color: white" ><b><i>Mis Productos</i></b></a></li>
       </ol>
 
     </nav>
@@ -84,22 +87,23 @@
       <div class="row"> 
 
         <div class="col-md-3 well">
-        	<h3> ¿Quieres vender cosas que ya no usas?</h3>
-        	<h4> ¡Hazlo en Wallapop!</h4>
+        	<h3> Â¿Quieres vender cosas que ya no usas?</h3>
+        	<h4> Â¡Hazlo en Wallapop!</h4>
         	</br>
-        	<p><a class="btn btn-lg btn-success" href="altaProducto.jsp" role="button">Nuevo Producto</a></p>
+        	<p><a class="btn btn-lg btn-success" href="altaProducto.jsp"> Nuevo Producto</a></p>
         </div>  
 
         <div class="col-md-9 well" style="background-color: white">
 
-        <c:forEach items="${productos }" var="productos">
-
+        <c:forEach items="${productos }" var="producto">
+        
           <div class="col-md-4 well">
 
-            <img class="img-rounded center-block" src="${productos.imagen }" alt="Generic product" width="240" height="180">
-            <h2>${productos.titulo }</h2>
-            <p><a class="btn btn-info btn-sm" href="producto.jsp" role="button">View details &raquo;</a>
-            <a class="btn btn-default btn-sm" href="ModificarProducto.jsp" role="button">Modificar &raquo;</a></p>
+            <h2>${producto.titulo }</h2>
+            <h2>${producto.categoria }</h2>
+     
+            <p><a class="btn btn-info" href="producto?id=${producto.id }&accion=VER" role="button">Ver Detalles &raquo;</a></p>
+            <a class="btn btn-default btn-sm" href="producto?id=${producto.id }&accion=EDITAR" role="button">Modificar &raquo;</a></p>
           </div><!-- /.col-lg-4 -->
 
         </c:forEach>

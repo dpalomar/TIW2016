@@ -9,6 +9,9 @@ import java.util.List;
 import javax.persistence.*;
 import static javax.persistence.CascadeType.ALL;
 
+
+
+
 @Entity
 @Table(name = "PRODUCTOS")
 public class Producto{
@@ -17,36 +20,41 @@ public class Producto{
 	@GeneratedValue(strategy = AUTO)
 	private int id;
 
-	@Column
+	@Column (nullable = false)
 	protected String titulo;
-	@Column
+	@Column (nullable = false)
 	protected String categoria;
-	@Column ( length = 45)
+	//La descripción no puede tener más de 500 caracteres
+	@Column ( length = 500)
 	protected String descripcion;
-	@Column
-	protected String imagen;
-	@Column
+	//@Column
+	//@Lob
+	/*protected String imagen;*/
+	@Column (nullable = false)
 	protected String precio;
 	@Column
-	protected String estado = "Disponible"; /*Estado inicial al dar de alta producto*/
+	protected String estado;
+	@Column
+	protected int usuario;
 	
-	//@ManyToOne(cascade = ALL)
-	//protected Usuario usuario;
+	/*@ManyToOne(cascade = ALL)
+	protected Usuario usuario;*/
 	
 	public Producto() {
 		
 	}
 
 	public Producto(int id, String titulo, String categoria, String descripcion,
-			String estado, String precio, String imagen) {
+			String estado, String precio, int usuario) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.descripcion = descripcion;
-		this.imagen = imagen;
+		//this.imagen = imagen;
 		this.estado = estado;
 		this.precio = precio;
+		this.usuario = usuario;
 		}
 
 	public int getId() {
@@ -81,14 +89,14 @@ public class Producto{
 		this.descripcion = descripcion;
 	}
 
-	public String getImagen() {
+	/*public String getImagen() {
 		return imagen;
 	}
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-
+*/
 	public String getPrecio() {
 		return precio;
 	}
@@ -105,6 +113,12 @@ public class Producto{
 		this.estado = estado;
 	}
 	
-		
 
-}
+	public int getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(int usuario) {
+		this.usuario = usuario;
+        }
+	}
+		

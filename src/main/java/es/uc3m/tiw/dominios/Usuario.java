@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import static javax.persistence.CascadeType.ALL;
 
 /**
- * @author David Palomar
+ * @author Grupo 3 TIW 2016
  *
  */
 @Entity
